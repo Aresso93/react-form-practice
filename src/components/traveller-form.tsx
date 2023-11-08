@@ -7,14 +7,68 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function TravellerForm() {
   
+  const [inputFields, setInputFields] = useState({
+    email: "",
+    fullName: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+
+  const validateValues = (inputValues) => {
+    let errors = {};
+    if (!inputValues.email.includes('.') && inputValues.email.length <= 10) {
+      errors.email = "Email must include a @";
+    }
+    if (inputValues.fullName.trim().length < 10) {
+      errors.fullName = "Name is too short and should include first name AND last name";
+    }
+    return errors;
+  };
+
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+    setInputFields({ ...inputFields, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    setErrors(validateValues(inputFields));
+    setSubmitting(true);
+  };
+
+  const finishSubmit = () => {
+    console.log(inputFields);
+  };
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && submitting) {
+      finishSubmit();
+    }
+  }, [errors]);
+
+  console.log(inputFields)
+
   return (
     <>
-    <div className='form-container'>
-    <TextField id="full-name" label="enter your full name" variant="outlined"/>
+     
+    <form className='form-container' onSubmit={handleSubmit}>
+    <TextField 
+    type='fullName'
+    name='fullName'
+    value={inputFields.fullName}
+    id="full-name" 
+    style={{ border: errors.fullName ? "1px solid red" : null }}
+    label="enter your full name" 
+    variant='outlined'
+    onChange={handleChange}
+    />
+    {errors.fullName ? (
+            <p className="error">Name should include first AND last name</p>
+          ) : null}
     <FormControl>
       <FormLabel id="demo-radio-buttons-group-label">Pick your gender</FormLabel>
       <RadioGroup
@@ -27,10 +81,22 @@ export default function TravellerForm() {
         <FormControlLabel value="other" control={<Radio />} label="Other" />
       </RadioGroup>
     </FormControl>
-    <TextField id="full-name" label="enter your email address" variant="outlined"/>
+    <TextField 
+    type='email'
+    name='email'
+    value={inputFields.email}
+    id="email" 
+    style={{ border: errors.email ? "1px solid red" : null }}
+    label="enter your email address" 
+    variant="outlined"
+    onChange={handleChange}
+    />
     <DatePicker label="Pick your date of birth" defaultValue={dayjs('2023-01-01')} />
-    
-    </div>
+    <button type="submit">Submit Information</button>
+    {Object.keys(errors).length === 0 && submitting ? (
+        <span className="success">Successfully submitted ✓</span>
+      ) : null}
+    </form>
   </>
   );
 }

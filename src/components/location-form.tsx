@@ -17,6 +17,7 @@ export default function LocationForm() {
   return (
     <>
     <div className='form-container'>
+   
     <Box sx={{ minWidth: 200 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Pick your destination</InputLabel>
@@ -35,6 +36,10 @@ export default function LocationForm() {
     </Box>
     <DatePicker label="Day of departure" defaultValue={dayjs('2023-01-01')} />
     <DatePicker label="Day of return" defaultValue={dayjs('2023-01-01')} />
+    <button 
+    type="submit"
+    onClick={()=> console.log('submittato')}
+    >Submit Information</button>
     </div>
       </>
   );

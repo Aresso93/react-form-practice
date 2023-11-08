@@ -16,10 +16,10 @@ function App() {
       <TravelStepper>
         
       </TravelStepper>
-   <TravellerForm/> 
-   {/* <LocationForm/> 
-    <PreferencesForm/>
-    <Recap/> */}
+   {/* <TravellerForm/> */}
+   {/* <LocationForm/>  */}
+    {/* <PreferencesForm/> */}
+    {/* <Recap/>  */}
     </LocalizationProvider> 
     </>
   )

@@ -6,8 +6,12 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { ReactNode } from 'react';
+import TravellerForm from './traveller-form';
+import { Recap } from './recap';
+import LocationForm from './location-form';
+import { PreferencesForm } from './preferences-form';
 
-const steps = ['You', 'Your destination', 'Your preferences', 'Your recap'];
+const steps = ['You', 'Your destination', 'Your preferences'];
 
 interface TravelStepperProps{
     children: ReactNode
@@ -42,9 +46,7 @@ export default function TravelStepper(props: TravelStepperProps) {
 
   const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
+      
     }
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -75,25 +77,39 @@ export default function TravelStepper(props: TravelStepperProps) {
           if (isStepSkipped(index)) {
             stepProps.completed = false;
           }
+          {if (activeStep === 0){
+    
+              <TravellerForm/> 
+          }}
           return (
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>{label}</StepLabel>
+              
             </Step>
           );
         })}
+               
       </Stepper>
       {activeStep === steps.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
+          <React.Fragment>
+          {/* <Typography sx={{ mt: 2, mb: 1 }}>
             All steps completed - Enjoy your travel!
-          </Typography>
+        </Typography> */}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
+            {/* RECAP */}
+          <Recap></Recap>
+          {/* RECAP */}
           </Box>
+            <Button 
+            onClick={handleReset}
+            variant='contained'
+            >
+            Refill the form from the start
+            </Button>
         </React.Fragment>
       ) : (
-        <React.Fragment>
+          <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
@@ -101,15 +117,19 @@ export default function TravelStepper(props: TravelStepperProps) {
               disabled={activeStep === 0}
               onClick={handleBack}
               sx={{ mr: 1 }}
-            >
+              >
               Back
             </Button>
+            {activeStep === 0 &&
+            <TravellerForm/>
+            }
+            {activeStep === 1 &&
+            <LocationForm/>
+            }
+            {activeStep === 2 &&
+            <PreferencesForm/>
+            }
             <Box sx={{ flex: '1 1 auto' }} />
-            {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
-              </Button>
-            )}
             <Button onClick={handleNext}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>

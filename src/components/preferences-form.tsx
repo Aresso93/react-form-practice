@@ -49,7 +49,7 @@ export function PreferencesForm() {
             />
           </FormGroup>
           <FormGroup>
-            Pick the extra activities you want
+            Pick the extra activities you want to participate in
             <FormControlLabel
               control={<Checkbox />}
               label="Trekking (+30 euros)"
