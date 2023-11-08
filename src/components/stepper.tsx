@@ -5,17 +5,17 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import TravellerForm from './traveller-form';
 import { Recap } from './recap';
 import LocationForm from './location-form';
 import { PreferencesForm } from './preferences-form';
+import { useStepperControls } from './hooks/useStepperControls';
 
 const steps = ['You', 'Your destination', 'Your preferences'];
 
 export default function TravelStepper() {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set<number>());
+  const [skipped, setSkipped] = useState(new Set<number>());
 
   const isStepOptional = (step: number) => {
     return step === 500;
@@ -25,40 +25,11 @@ export default function TravelStepper() {
     return skipped.has(step);
   };
 
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  const stepperControls = useStepperControls()
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep}>
+      <Stepper activeStep={stepperControls.state.activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
@@ -72,7 +43,7 @@ export default function TravelStepper() {
           if (isStepSkipped(index)) {
             stepProps.completed = false;
           }
-          {if (activeStep === 0){
+          {if (stepperControls.state.activeStep === 0){
     
               <TravellerForm/> 
           }}
@@ -84,7 +55,7 @@ export default function TravelStepper() {
         })}
                
       </Stepper>
-      {activeStep === steps.length ? (
+      {stepperControls.state.activeStep === steps.length ? (
           <React.Fragment>
           {/* <Typography sx={{ mt: 2, mb: 1 }}>
             All steps completed - Enjoy your travel!
@@ -96,7 +67,7 @@ export default function TravelStepper() {
           {/* RECAP */}
           </Box>
             <Button 
-            onClick={handleReset}
+            onClick={stepperControls.actions.handleReset}
             variant='contained'
             >
             Refill the form from the start
@@ -104,28 +75,28 @@ export default function TravelStepper() {
         </React.Fragment>
       ) : (
           <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          <Typography sx={{ mt: 2, mb: 1 }}>Step {stepperControls.state.activeStep + 1}</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
+              disabled={stepperControls.state.activeStep === 0}
+              onClick={stepperControls.actions.handleBack}
               sx={{ mr: 1 }}
               >
               Back
             </Button>
-            {activeStep === 0 &&
+            {stepperControls.state.activeStep === 0 &&
             <TravellerForm/>
             }
-            {activeStep === 1 &&
+            {stepperControls.state.activeStep === 1 &&
             <LocationForm/>
             }
-            {activeStep === 2 &&
+            {stepperControls.state.activeStep === 2 &&
             <PreferencesForm/>
             }
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            <Button onClick={stepperControls.actions.handleNext}>
+              { stepperControls.state.activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>
         </React.Fragment>

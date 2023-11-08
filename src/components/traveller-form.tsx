@@ -7,9 +7,12 @@ import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
+import { useStepperControls } from './hooks/useStepperControls';
 
 export default function TravellerForm() {
   
+  const stepperControls = useStepperControls()
+
   const [inputFields, setInputFields] = useState({
     email: "",
     fullName: "",
@@ -95,6 +98,10 @@ export default function TravellerForm() {
     {Object.keys(errors).length === 0 && submitting ? (
         <span className="success">Successfully submitted ✓</span>
       ) : null}
+      <button 
+      type="submit"
+      onClick={stepperControls.actions.handleNext}
+      >Submit Information</button>
     </form>
   </>
   );
