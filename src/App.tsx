@@ -1,15 +1,26 @@
 import './App.css'
-import { LocationForm } from './components/location-form'
+
 import { Recap } from './components/recap'
-import { PaymentForm } from './components/payment-form'
 import { PreferencesForm } from './components/preferences-form'
 import TravellerForm from './components/traveller-form'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import LocationForm from './components/location-form'
+import TravelStepper from './components/stepper'
 
 function App() {
 
   return (
     <>
-      <TravellerForm/>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <TravelStepper>
+        
+      </TravelStepper>
+   <TravellerForm/> 
+   {/* <LocationForm/> 
+    <PreferencesForm/>
+    <Recap/> */}
+    </LocalizationProvider> 
     </>
   )
 }
