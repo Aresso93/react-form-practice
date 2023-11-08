@@ -3,7 +3,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
@@ -76,9 +75,9 @@ export default function TravellerForm() {
         defaultValue="female"
         name="radio-buttons-group"
         >
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-        <FormControlLabel value="other" control={<Radio />} label="Other" />
+        <FormControlLabel value="female" control={<Radio />} label="female" />
+        <FormControlLabel value="male" control={<Radio />} label="male" />
+        <FormControlLabel value="other" control={<Radio />} label="other" />
       </RadioGroup>
     </FormControl>
     <TextField 
@@ -92,7 +91,7 @@ export default function TravellerForm() {
     onChange={handleChange}
     />
     <DatePicker label="Pick your date of birth" defaultValue={dayjs('2023-01-01')} />
-    <button type="submit">Submit Information</button>
+    {/* <button type="submit">Submit Information</button> */}
     {Object.keys(errors).length === 0 && submitting ? (
         <span className="success">Successfully submitted ✓</span>
       ) : null}

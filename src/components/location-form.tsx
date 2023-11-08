@@ -36,10 +36,6 @@ export default function LocationForm() {
     </Box>
     <DatePicker label="Day of departure" defaultValue={dayjs('2023-01-01')} />
     <DatePicker label="Day of return" defaultValue={dayjs('2023-01-01')} />
-    <button 
-    type="submit"
-    onClick={()=> console.log('submittato')}
-    >Submit Information</button>
     </div>
       </>
   );

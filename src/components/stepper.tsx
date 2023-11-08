@@ -13,11 +13,7 @@ import { PreferencesForm } from './preferences-form';
 
 const steps = ['You', 'Your destination', 'Your preferences'];
 
-interface TravelStepperProps{
-    children: ReactNode
-}
-
-export default function TravelStepper(props: TravelStepperProps) {
+export default function TravelStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
 
@@ -46,7 +42,6 @@ export default function TravelStepper(props: TravelStepperProps) {
 
   const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
-      
     }
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -84,7 +79,6 @@ export default function TravelStepper(props: TravelStepperProps) {
           return (
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>{label}</StepLabel>
-              
             </Step>
           );
         })}
