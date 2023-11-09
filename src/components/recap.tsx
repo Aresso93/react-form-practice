@@ -1,7 +1,5 @@
 import { FormGroup, FormControlLabel, Checkbox, Button } from "@mui/material";
-import TravellerForm from "./traveller-form";
 import { useEffect, useState } from "react";
-import LocationForm from "./location-form";
 import { useStepperControls } from "./hooks/useStepperControls";
 
 export function Recap() {
