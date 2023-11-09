@@ -81,7 +81,10 @@ export default function TravellerForm() {
     {Object.keys(formValidation.states.errors).length === 0 && formValidation.states.submitting ? (
         <span>Successfully submitted ✓</span>
       ) : null}
-      
+      {/* <button
+      onClick={formValidation.actions.handleSubmit}
+      >AAAAAAAAAA
+      </button> */}
    </div>
   );
 }
