@@ -15,7 +15,6 @@ export function useStepperControls(){
         setActiveStep(0);
       };
     
-
     return {
         actions:{
             handleBack,

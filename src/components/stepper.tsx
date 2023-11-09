@@ -5,7 +5,6 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
 import TravellerForm from './traveller-form';
 import { Recap } from './recap';
 import LocationForm from './location-form';
@@ -22,7 +21,7 @@ export default function TravelStepper() {
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={stepperControls.state.activeStep}>
-        {steps.map((label, index) => {
+        {steps.map((label) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
             optional?: React.ReactNode;
