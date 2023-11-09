@@ -2,9 +2,10 @@ import { FormGroup, FormControlLabel, Checkbox, Button } from "@mui/material";
 import TravellerForm from "./traveller-form";
 import { useEffect, useState } from "react";
 import LocationForm from "./location-form";
+import { useStepperControls } from "./hooks/useStepperControls";
 
 export function Recap() {
-
+  const stepperControls = useStepperControls()
   let [checked, setChecked] = useState(false)
   const handleCheck = () => {
     if(checked){
@@ -15,7 +16,6 @@ export function Recap() {
   };
 
   useEffect(() => {
-    
   }, [handleCheck]);
 
   return (
@@ -32,7 +32,6 @@ export function Recap() {
           required control={<Checkbox />} 
           label="I accept and relinquish my soul"
           onChange={handleCheck}
-          //onClick={toggleCheck}
           />
         </FormGroup>
 
@@ -45,7 +44,7 @@ export function Recap() {
         :
         <Button 
         variant="contained"
-        onClick={()=> console.log('AAAAAA', checked)}
+        onClick={stepperControls.actions.handleReset}
         >Submit
         </Button>
         }

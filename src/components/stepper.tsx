@@ -10,13 +10,13 @@ import { Recap } from './recap';
 import LocationForm from './location-form';
 import { PreferencesForm } from './preferences-form';
 import { useStepperControls } from './hooks/useStepperControls';
+import { useFormValidation } from './hooks/useFormValidation';
 
 const steps = ['You', 'Your destination', 'Your preferences'];
 
 export default function TravelStepper() {
-  
- 
   const stepperControls = useStepperControls()
+  const formValidation = useFormValidation()
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -90,7 +90,8 @@ export default function TravelStepper() {
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
             <Button 
-            onClick={stepperControls.actions.handleNext}>
+            onClick={stepperControls.actions.handleNext}
+            >
             {stepperControls.state.activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>

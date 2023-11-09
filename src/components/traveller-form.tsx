@@ -25,7 +25,6 @@ export default function TravellerForm() {
   console.log('sul cambio', formValidation.states.inputFields)
 
   return (
- 
     <div className='form-container'>
     <TextField 
     type='fullName'
@@ -82,12 +81,9 @@ export default function TravellerForm() {
           ) : null}
     
     {Object.keys(formValidation.states.errors).length === 0 && formValidation.states.submitting ? (
-        <span className="success">Successfully submitted ✓</span>
+        <span>Successfully submitted ✓</span>
       ) : null}
-      <button
-      onClick={formValidation.actions.handleSubmit}>
-        AAAAAAAAAA
-      </button>
+      
    </div>
   );
 }

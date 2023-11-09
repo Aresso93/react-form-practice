@@ -14,8 +14,7 @@ export function useFormValidation(){
         setInputFields({ ...inputFields, [e.target.name]: e.target.value });
       };
     
-      const handleSubmit = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
+      const handleSubmit = () => {
         setErrors(validateValues(inputFields));
         setSubmitting(true);
       };
