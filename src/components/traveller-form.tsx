@@ -12,11 +12,11 @@ import { useStepperControls } from './hooks/useStepperControls';
 export default function TravellerForm() {
   
   const stepperControls = useStepperControls()
-
   const [inputFields, setInputFields] = useState({
     email: "",
     fullName: "",
-    gender: ""
+    gender: "",
+    date: Date
   });
 
   const [errors, setErrors] = useState({});
@@ -33,10 +33,13 @@ export default function TravellerForm() {
     if (!inputValues.gender){
       errors.gender = "Select a gender"
     }
+    if (!inputValues.date){
+      errors.date = "Select a date"
+    }
     return errors;
   };
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: { target }) => {
     setInputFields({ ...inputFields, [e.target.name]: e.target.value });
   };
 
@@ -74,6 +77,15 @@ export default function TravellerForm() {
     {errors.fullName ? (
             <p className="error">Name should include first AND last name</p>
           ) : null}
+    <DatePicker 
+    name= "date"
+    value={inputFields.date}
+    label="travel date picker"
+    onChange={handleChange}
+    />
+    {errors.date ? (
+            <p className="error">Seleziona una data valida</p>
+          ) : null}
     <FormControl>
       <FormLabel id="demo-radio-buttons-group-label">Pick your gender*</FormLabel>
       <RadioGroup
@@ -103,16 +115,10 @@ export default function TravellerForm() {
     {errors.email ? (
             <p className="error">Please insert a valid email</p>
           ) : null}
-    <DatePicker label="Pick your date of birth" defaultValue={dayjs('2005-01-01')} />
-    {/* <button type="submit">Submit Information</button> */}
+    
     {Object.keys(errors).length === 0 && submitting ? (
         <span className="success">Successfully submitted ✓</span>
       ) : null}
-      <button 
-      type="submit"
-      onClick={stepperControls.actions.handleNext}
-      >Submit Information
-      </button>
     </form>
   </>
   );

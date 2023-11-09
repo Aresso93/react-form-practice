@@ -6,14 +6,18 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
+import { useEffect } from 'react';
 
 export default function LocationForm() {
   const [location, setLocation] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
+    console.log(location);
   };
-  console.log('AAAAAAA');
+  useEffect(() => {
+    
+  }, [location]);
   return (
     <>
     <div className='form-container'>
@@ -24,6 +28,7 @@ export default function LocationForm() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
+          defaultValue=''
           value={location}
           label="Available locations"
           onChange={handleChange}
@@ -35,10 +40,15 @@ export default function LocationForm() {
       </FormControl>
     </Box>
     <DatePicker 
-    label="Day of departure" 
-    defaultValue={dayjs('2023-01-01')} 
+    name= "date of departure"
+    label="date of departure"
+    onChange={(date) => console.log(date)}
     />
-    <DatePicker label="Day of return" defaultValue={dayjs('2023-01-01')} />
+    <DatePicker 
+    name= "date of return"
+    label="date of return"
+    onChange={(date) => console.log(date)}
+    />
     </div>
       </>
   );
