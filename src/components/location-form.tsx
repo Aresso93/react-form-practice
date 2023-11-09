@@ -13,7 +13,7 @@ export default function LocationForm() {
   const handleChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
-
+  console.log('AAAAAAA');
   return (
     <>
     <div className='form-container'>
@@ -34,7 +34,10 @@ export default function LocationForm() {
         </Select>
       </FormControl>
     </Box>
-    <DatePicker label="Day of departure" defaultValue={dayjs('2023-01-01')} />
+    <DatePicker 
+    label="Day of departure" 
+    defaultValue={dayjs('2023-01-01')} 
+    />
     <DatePicker label="Day of return" defaultValue={dayjs('2023-01-01')} />
     </div>
       </>

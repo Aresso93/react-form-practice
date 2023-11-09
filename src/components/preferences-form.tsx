@@ -18,7 +18,7 @@ export function PreferencesForm() {
           </FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="hotel"
+            defaultValue=""
             name="radio-buttons-group"
           >
             <FormControlLabel value="hotel" control={<Radio />} label="Hotel" />

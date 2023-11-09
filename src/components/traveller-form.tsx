@@ -16,6 +16,7 @@ export default function TravellerForm() {
   const [inputFields, setInputFields] = useState({
     email: "",
     fullName: "",
+    gender: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -28,6 +29,9 @@ export default function TravellerForm() {
     }
     if (inputValues.fullName.trim().length < 10) {
       errors.fullName = "Name is too short and should include first name AND last name";
+    }
+    if (!inputValues.gender){
+      errors.gender = "Select a gender"
     }
     return errors;
   };
@@ -43,7 +47,7 @@ export default function TravellerForm() {
   };
 
   const finishSubmit = () => {
-    console.log(inputFields);
+    console.log('AAAAAAA', inputFields);
   };
 
   useEffect(() => {
@@ -52,11 +56,10 @@ export default function TravellerForm() {
     }
   }, [errors]);
 
-  console.log(inputFields)
+  console.log('sul cambio', inputFields)
 
   return (
     <>
-     
     <form className='form-container' onSubmit={handleSubmit}>
     <TextField 
     type='fullName'
@@ -72,15 +75,19 @@ export default function TravellerForm() {
             <p className="error">Name should include first AND last name</p>
           ) : null}
     <FormControl>
-      <FormLabel id="demo-radio-buttons-group-label">Pick your gender</FormLabel>
+      <FormLabel id="demo-radio-buttons-group-label">Pick your gender*</FormLabel>
       <RadioGroup
         aria-labelledby="demo-radio-buttons-group-label"
-        defaultValue="female"
-        name="radio-buttons-group"
+        defaultValue=" "
+        name="gender"
+        onChange={handleChange}
         >
         <FormControlLabel value="female" control={<Radio />} label="female" />
         <FormControlLabel value="male" control={<Radio />} label="male" />
         <FormControlLabel value="other" control={<Radio />} label="other" />
+          {errors.fullName ? (
+            <p className="error">Please select a gender option</p>
+          ) : null}
       </RadioGroup>
     </FormControl>
     <TextField 
@@ -93,7 +100,10 @@ export default function TravellerForm() {
     variant="outlined"
     onChange={handleChange}
     />
-    <DatePicker label="Pick your date of birth" defaultValue={dayjs('2023-01-01')} />
+    {errors.email ? (
+            <p className="error">Please insert a valid email</p>
+          ) : null}
+    <DatePicker label="Pick your date of birth" defaultValue={dayjs('2005-01-01')} />
     {/* <button type="submit">Submit Information</button> */}
     {Object.keys(errors).length === 0 && submitting ? (
         <span className="success">Successfully submitted ✓</span>
@@ -101,7 +111,8 @@ export default function TravellerForm() {
       <button 
       type="submit"
       onClick={stepperControls.actions.handleNext}
-      >Submit Information</button>
+      >Submit Information
+      </button>
     </form>
   </>
   );
