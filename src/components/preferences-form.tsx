@@ -21,13 +21,19 @@ export function PreferencesForm() {
             defaultValue=""
             name="radio-buttons-group"
           >
-            <FormControlLabel value="hotel" control={<Radio />} label="Hotel" />
+            <FormControlLabel 
+            name="hotel"
+            value="hotel" 
+            control={<Radio />} 
+            label="Hotel" />
             <FormControlLabel
+              name="apartment"
               value="apartment"
               control={<Radio />}
               label="Apartment"
             />
             <FormControlLabel
+              name="hostel"
               value="hostel"
               control={<Radio />}
               label="Hostel"

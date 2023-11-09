@@ -6,75 +6,38 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers';
 import { useEffect, useState } from 'react';
-import { useStepperControls } from './hooks/useStepperControls';
 import dayjs, { Dayjs } from 'dayjs';
+import { useFormValidation } from './hooks/useFormValidation';
 
 export default function TravellerForm() {
-  const stepperControls = useStepperControls()
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
-  const [inputFields, setInputFields] = useState({
-    email: "",
-    fullName: "",
-    gender: "",
-    date: ""
-  });
-
-  const [errors, setErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
-
-  const validateValues = (inputValues: { email: any; fullName: any; gender: any; date: any; }) => {
-    let errors = {};
-    if (!inputValues.email.includes('.') && inputValues.email.length <= 10) {
-      errors.email = "Email must include a @";
-    }
-    if (inputValues.fullName.trim().length < 10) {
-      errors.fullName = "Name is too short and should include first name AND last name";
-    }
-    if (!inputValues.gender){
-      errors.gender = "Select a gender"
-    }
-    if (!inputValues.date){
-      errors.date = "Select a date"
-    }
-    return errors;
-  };
-
-  const handleChange = (e: { target }) => {
-    setInputFields({ ...inputFields, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
-    event.preventDefault();
-    setErrors(validateValues(inputFields));
-    setSubmitting(true);
-  };
-
+  const formValidation = useFormValidation()
   const finishSubmit = () => {
-    console.log('AAAAAAA', inputFields);
+    console.log('AAAAAAA')
   };
 
   useEffect(() => {
-    if (Object.keys(errors).length === 0 && submitting) {
+    if (Object.keys(formValidation.states.errors).length === 0 && formValidation.states.submitting) {
       finishSubmit();
     }
-  }, [errors]);
+  }, [formValidation.states.errors]);
 
-  console.log('sul cambio', inputFields)
+  console.log('sul cambio', formValidation.states.inputFields)
 
   return (
  
-    <div className='form-container' onSubmit={handleSubmit}>
+    <div className='form-container'>
     <TextField 
     type='fullName'
     name='fullName'
-    value={inputFields.fullName}
+    value={formValidation.states.inputFields.fullName}
     id="full-name" 
-    style={{ border: errors.fullName ? "1px solid red" : null }}
+    style={{ border: formValidation.states.errors.fullName ? "1px solid red" : null }}
     label="enter your full name" 
     variant='outlined'
-    onChange={handleChange}
+    onChange={formValidation.actions.handleChange}
     />
-    {errors.fullName ? (
+    {formValidation.states.errors.fullName ? (
             <p className="error">Name should include first AND last name</p>
           ) : null}
     <DatePicker 
@@ -85,8 +48,8 @@ export default function TravellerForm() {
       console.log(newValue.$d)
     }}
     />
-    {errors.date ? (
-            <p className="error">Seleziona una data valida</p>
+    {formValidation.states.errors.date ? (
+            <p className="error">Please select a valid date</p>
           ) : null}
     <FormControl>
       <FormLabel id="demo-radio-buttons-group-label">Pick your gender*</FormLabel>
@@ -94,12 +57,12 @@ export default function TravellerForm() {
         aria-labelledby="demo-radio-buttons-group-label"
         defaultValue=" "
         name="gender"
-        onChange={handleChange}
+        onChange={formValidation.actions.handleChange}
         >
         <FormControlLabel value="female" control={<Radio />} label="female" />
         <FormControlLabel value="male" control={<Radio />} label="male" />
         <FormControlLabel value="other" control={<Radio />} label="other" />
-          {errors.fullName ? (
+          {formValidation.states.errors.fullName ? (
             <p className="error">Please select a gender option</p>
           ) : null}
       </RadioGroup>
@@ -107,20 +70,24 @@ export default function TravellerForm() {
     <TextField 
     type='email'
     name='email'
-    value={inputFields.email}
+    value={formValidation.states.inputFields.email}
     id="email" 
-    style={{ border: errors.email ? "1px solid red" : null }}
+    style={{ border: formValidation.states.errors.email ? "1px solid red" : null }}
     label="enter your email address" 
     variant="outlined"
-    onChange={handleChange}
+    onChange={formValidation.actions.handleChange}
     />
-    {errors.email ? (
+    {formValidation.states.errors.email ? (
             <p className="error">Please insert a valid email</p>
           ) : null}
     
-    {Object.keys(errors).length === 0 && submitting ? (
+    {Object.keys(formValidation.states.errors).length === 0 && formValidation.states.submitting ? (
         <span className="success">Successfully submitted ✓</span>
       ) : null}
+      <button
+      onClick={formValidation.actions.handleSubmit}>
+        AAAAAAAAAA
+      </button>
    </div>
   );
 }
