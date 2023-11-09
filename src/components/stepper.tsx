@@ -70,7 +70,7 @@ export default function TravelStepper() {
             onClick={stepperControls.actions.handleReset}
             variant='contained'
             >
-            Refill the form from the start
+            Fill out a new form
             </Button>
         </React.Fragment>
       ) : (
