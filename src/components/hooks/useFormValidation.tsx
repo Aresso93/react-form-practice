@@ -18,10 +18,6 @@ export function useFormValidation(){
         setErrors(validateValues(inputFields));
         setSubmitting(true);
       };
-    
-      const finishSubmit = () => {
-        console.log('AAAAAAA', inputFields);
-      };
 
       const validateValues = (inputValues) => {
         let errors = {};
@@ -44,7 +40,6 @@ export function useFormValidation(){
         actions:{
             handleChange,
             handleSubmit,
-            finishSubmit,
         },
         states:{
             inputFields,

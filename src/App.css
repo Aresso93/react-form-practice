@@ -54,3 +54,22 @@
   flex-direction: column;
 
 }
+
+.user-details{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.destination-details{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.preferences-details{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}

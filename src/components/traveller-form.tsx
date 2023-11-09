@@ -12,14 +12,9 @@ import { useFormValidation } from './hooks/useFormValidation';
 export default function TravellerForm() {
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const formValidation = useFormValidation()
-  const finishSubmit = () => {
-    console.log('AAAAAAA')
-  };
 
   useEffect(() => {
-    if (Object.keys(formValidation.states.errors).length === 0 && formValidation.states.submitting) {
-      finishSubmit();
-    }
+    
   }, [formValidation.states.errors]);
 
   console.log('sul cambio', formValidation.states.inputFields)
@@ -37,19 +32,22 @@ export default function TravellerForm() {
     onChange={formValidation.actions.handleChange}
     />
     {formValidation.states.errors.fullName ? (
-            <p className="error">Name should include first AND last name</p>
-          ) : null}
+    <p className="error">Name should include first AND last name</p>
+    ) : null}
     <DatePicker 
     value={value}
     label="travel date picker"
     onChange={(newValue) => {
       setValue(newValue)
-      console.log(newValue.$d)
+      const stringDate = newValue?.toString()
+      console.log(stringDate)
     }}
+    
     />
     {formValidation.states.errors.date ? (
             <p className="error">Please select a valid date</p>
           ) : null}
+
     <FormControl>
       <FormLabel id="demo-radio-buttons-group-label">Pick your gender*</FormLabel>
       <RadioGroup
