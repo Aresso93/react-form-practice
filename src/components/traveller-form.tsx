@@ -5,24 +5,24 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useStepperControls } from './hooks/useStepperControls';
+import dayjs, { Dayjs } from 'dayjs';
 
 export default function TravellerForm() {
-  
   const stepperControls = useStepperControls()
+  const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const [inputFields, setInputFields] = useState({
     email: "",
     fullName: "",
     gender: "",
-    date: Date
+    date: ""
   });
 
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
-  const validateValues = (inputValues) => {
+  const validateValues = (inputValues: { email: any; fullName: any; gender: any; date: any; }) => {
     let errors = {};
     if (!inputValues.email.includes('.') && inputValues.email.length <= 10) {
       errors.email = "Email must include a @";
@@ -62,8 +62,8 @@ export default function TravellerForm() {
   console.log('sul cambio', inputFields)
 
   return (
-    <>
-    <form className='form-container' onSubmit={handleSubmit}>
+ 
+    <div className='form-container' onSubmit={handleSubmit}>
     <TextField 
     type='fullName'
     name='fullName'
@@ -78,10 +78,12 @@ export default function TravellerForm() {
             <p className="error">Name should include first AND last name</p>
           ) : null}
     <DatePicker 
-    name= "date"
-    value={inputFields.date}
+    value={value}
     label="travel date picker"
-    onChange={handleChange}
+    onChange={(newValue) => {
+      setValue(newValue)
+      console.log(newValue.$d)
+    }}
     />
     {errors.date ? (
             <p className="error">Seleziona una data valida</p>
@@ -119,7 +121,6 @@ export default function TravellerForm() {
     {Object.keys(errors).length === 0 && submitting ? (
         <span className="success">Successfully submitted ✓</span>
       ) : null}
-    </form>
-  </>
+   </div>
   );
 }

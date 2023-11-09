@@ -36,8 +36,7 @@ export default function TravelStepper() {
               <StepLabel {...labelProps}>{label}</StepLabel>
             </Step>
           );
-        })}
-               
+        })}   
       </Stepper>
       {stepperControls.state.activeStep === steps.length ? (
           <React.Fragment>
@@ -50,12 +49,22 @@ export default function TravelStepper() {
           <Recap></Recap>
           {/* RECAP */}
           </Box>
+          <div className='btn-ctn'>
             <Button 
             onClick={stepperControls.actions.handleReset}
             variant='contained'
             >
             Fill out a new form
             </Button>
+            <Button
+              color="inherit"
+              disabled={stepperControls.state.activeStep === 0}
+              onClick={stepperControls.actions.handleBack}
+              sx={{ mr: 1 }}
+              >
+              Back
+            </Button>
+            </div>
         </React.Fragment>
       ) : (
           <React.Fragment>
@@ -69,9 +78,8 @@ export default function TravelStepper() {
             <LocationForm/>
             }
             {stepperControls.state.activeStep === 2 &&
-            <PreferencesForm/>
+              <PreferencesForm/>
             }
-            <Box sx={{ flex: '1 1 auto' }} />
             <Button
               color="inherit"
               disabled={stepperControls.state.activeStep === 0}
@@ -80,7 +88,9 @@ export default function TravelStepper() {
               >
               Back
             </Button>
-            <Button onClick={stepperControls.actions.handleNext}>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button 
+            onClick={stepperControls.actions.handleNext}>
             {stepperControls.state.activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>

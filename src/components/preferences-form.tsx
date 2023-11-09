@@ -14,7 +14,7 @@ export function PreferencesForm() {
       <div className="form-container">
         <FormControl>
           <FormLabel id="demo-radio-buttons-group-label">
-            Pick your preferred accommodation
+            Pick your preferred accommodation*
           </FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
@@ -34,10 +34,12 @@ export function PreferencesForm() {
             />
           </RadioGroup>
           <FormGroup>
-            Pick the meals you want during your stay
+            Pick the meals you want during your stay (you can select multiple options)
             <FormControlLabel
               control={<Checkbox />}
               label="Breakfast (+10 euros)"
+              onChange={(check) => console.log(check)
+              }
             />
             <FormControlLabel
               control={<Checkbox />}
@@ -46,10 +48,11 @@ export function PreferencesForm() {
             <FormControlLabel
               control={<Checkbox />}
               label="Dinner (+15 euros)"
+              onChange={(check) => console.log(check)}
             />
           </FormGroup>
           <FormGroup>
-            Pick the extra activities you want to take part in
+            Pick the extra activities you want to take part in (you can select multiple options)
             <FormControlLabel
               control={<Checkbox />}
               label="Trekking (+30 euros)"
