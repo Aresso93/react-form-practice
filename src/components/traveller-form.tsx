@@ -34,16 +34,16 @@ export default function TravellerForm() {
     {formValidation.states.errors.fullName ? (
     <p className="error">Name should include first AND last name</p>
     ) : null}
-    <DatePicker 
+
+    {/* <DatePicker 
     value={value}
     label="travel date picker"
     onChange={(newValue) => {
       setValue(newValue)
       const stringDate = newValue?.toString()
       console.log(stringDate)
-    }}
-    
-    />
+    }}/> */}
+
     {formValidation.states.errors.date ? (
             <p className="error">Please select a valid date</p>
           ) : null}

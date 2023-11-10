@@ -1,5 +1,19 @@
 import { createContext, useContext } from "react";
+import { useFormValidation } from "../components/hooks/useFormValidation";
 
-export const formContentContext = createContext('')
+const formValidationState = {
+    actions:{
+        handleChange: () => {},
+        handleSubmit: () => {},
+        validateValues: () => {},
+    },
+    states:{
+        inputFields: '',
+        errors: '',
+        submitting: ''
+    }
+}
 
-export const useFormContContext = () => useContext(formContentContext)
+export const FormContentContext = createContext(formValidationState)
+
+export const useFormContentContext = () => useContext(FormContentContext)
