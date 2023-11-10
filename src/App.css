@@ -46,30 +46,12 @@
   flex-direction: column;
   gap: 12px;
   align-items: center;
-  justify-content: center;
 }
 
 .btn-ctn{
   display: flex;
   flex-direction: column;
-
-}
-
-.user-details{
-  display: flex;
-  flex-direction: column;
+  align-items: center;
+  margin: 8px;
   gap: 4px;
-}
-
-.destination-details{
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.preferences-details{
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 8px;
 }

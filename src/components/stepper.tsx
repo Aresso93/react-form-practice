@@ -11,12 +11,25 @@ import LocationForm from './location-form';
 import { PreferencesForm } from './preferences-form';
 import { useStepperControls } from './hooks/useStepperControls';
 import { useFormValidation } from './hooks/useFormValidation';
+import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 const steps = ['You', 'Your destination', 'Your preferences'];
 
 export default function TravelStepper() {
   const stepperControls = useStepperControls()
   const formValidation = useFormValidation()
+  let [checked, setChecked] = useState(false)
+  const handleCheck = () => {
+    if(checked){
+      setChecked(false);
+    } else if(!checked){
+      setChecked(true)
+    }
+  };
+
+  useEffect(() => {
+  }, [handleCheck]);
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -40,15 +53,37 @@ export default function TravelStepper() {
       </Stepper>
       {stepperControls.state.activeStep === steps.length ? (
           <React.Fragment>
+            <div className='btn-ctn'>
+
           <Typography sx={{ mt: 2, mb: 1 }}>
             All steps completed - Accept our terms and conditions to submit your information
         </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            {/* RECAP */}
-          <Recap></Recap>
-          {/* RECAP */}
+          <FormGroup>
+          <FormControlLabel 
+          required control={<Checkbox />} 
+          label="I accept"
+          onChange={handleCheck}
+          />
+        </FormGroup>
+
+        {checked === false ?
+        <Button 
+        disabled
+        variant="contained"
+        >Submit
+        </Button>
+        :
+        <Button 
+        variant="contained"
+        onClick={stepperControls.actions.handleReset}
+        >Submit
+        </Button>
+        }
           </Box>
+        </div>
+          <Recap/>
+  
           <div className='btn-ctn'>
             <Button 
             onClick={stepperControls.actions.handleReset}
