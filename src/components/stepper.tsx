@@ -116,7 +116,11 @@ export default function TravelStepper() {
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
             <Button 
-            onClick={stepperControls.actions.handleNext}
+            onClick={() => {
+              formValidation.actions.handleSubmit()
+              stepperControls.actions.handleNext()
+            }
+            }
             >
             {stepperControls.state.activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>

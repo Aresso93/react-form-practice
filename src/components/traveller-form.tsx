@@ -85,7 +85,10 @@ export default function TravellerForm() {
       formValidation.states.submitting ? (
         <span>Successfully submitted ✓</span>
       ) : null}
-      <button onClick={formValidation.actions.handleSubmit}>AAAAAAAAAA</button>
+      {/* <button onClick={() => {
+        console.log('UUUUUUU')
+        formValidation.actions.handleSubmit()
+        }}>AAAAAAAAAA</button> */}
     </div>
   );
 }

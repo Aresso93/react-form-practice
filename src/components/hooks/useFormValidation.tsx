@@ -3,7 +3,6 @@ import dayjs, { Dayjs } from "dayjs";
 import { SetStateAction, useState } from "react";
 
 export function useFormValidation(){
-  
   const handleChange = (e: { target }) => {
     setInputFields({ ...inputFields, [e.target.name]: e.target.value });
   };
@@ -18,7 +17,7 @@ export function useFormValidation(){
   const handleSubmit = () => {
     setErrors(validateValues(inputFields));
     setSubmitting(true);
-    console.log('HADOKEN');
+    console.log('Submitted');
   };
 
   const handleDate = (newValue: SetStateAction<dayjs.Dayjs | null>) =>{
