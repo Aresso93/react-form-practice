@@ -20,7 +20,7 @@ export function useFormValidation(){
   
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
-    console.log(location);
+    console.log('oooooooo', location);
   };
 
   const validateValues = (inputValues) => {

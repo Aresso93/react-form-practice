@@ -6,13 +6,14 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { DatePicker } from '@mui/x-date-pickers';
 import { useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
+import { useFormContentContext } from '../contexts/formContentContext';
 
 export default function LocationForm() {
   const [location, setLocation] = useState('');
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
+  const formValidation = useFormContentContext()
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
-    console.log(location);
   };
   useEffect(() => {
     
@@ -28,9 +29,10 @@ export default function LocationForm() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={location}
+          defaultValue='Genoa'
+          value={formValidation.states.location}
           label="Available locations"
-          onChange={handleLocationChange}
+          onChange={formValidation.actions.handleLocationChange}
           >
           <MenuItem value={'Genoa'}>Genoa</MenuItem>
           <MenuItem value={'Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch'}>Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch</MenuItem>

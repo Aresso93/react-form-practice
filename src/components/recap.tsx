@@ -27,7 +27,7 @@ export function Recap() {
     <button>Edit this section</button>
     </div>
     <div className="btn-ctn">
-    Destination: Spain
+    Destination: {formValidation.states.location}
     Date of departure: 50/01/2300
     Date of return: 52/01/2300   
     <button>Edit this section</button> 
