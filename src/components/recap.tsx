@@ -20,21 +20,21 @@ export function Recap() {
       </div>
     The information you're going to submit: <br />
     <div className="btn-ctn">
-    Full name: {formValidation.states.inputFields.fullName}
-    Date of birth: {formValidation.states.inputFields.date}
-    Gender: {formValidation.states.inputFields.gender}
-    Email address: {formValidation.states.inputFields.email}
+    Full name: {formValidation.states.inputFields.fullName} <br></br>
+    Date of birth: {formValidation.states.inputFields.date} <br></br>
+    Gender: {formValidation.states.inputFields.gender} <br></br> 
+    Email address: {formValidation.states.inputFields.email} <br></br>
     <button>Edit this section</button>
     </div>
     <div className="btn-ctn">
-    Destination: {formValidation.states.location}
+    Destination: {formValidation.states.location} <br></br>
     Date of departure: 50/01/2300
     Date of return: 52/01/2300   
     <button>Edit this section</button> 
     </div>
 
     <div className="btn-ctn">
-    Method of accommodation: City 
+    Method of accommodation: {formValidation.states.inputFields.accommodation}
     Meals you are going to have on your holiday: A, B, C 
     Extra activities: D, E and F
     <button>Edit this section</button>

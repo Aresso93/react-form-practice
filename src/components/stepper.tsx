@@ -21,12 +21,8 @@ export default function TravelStepper() {
   const stepperControls = useStepperControls()
    const formValidation = useFormContentContext()
   let [checked, setChecked] = useState(false)
-  const handleCheck = () => {
-    if(checked){
-      setChecked(false);
-    } else if(!checked){
-      setChecked(true)
-    }
+  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
   };
 
   useEffect(() => {

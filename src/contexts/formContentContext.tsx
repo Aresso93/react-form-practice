@@ -2,24 +2,29 @@ import { PropsWithChildren, createContext, useContext } from "react";
 import { useFormValidation } from "../components/hooks/useFormValidation";
 
 export const FormContentContext = createContext({
-    // actions:{
-    //     handleChange: () => {},
-    //     handleSubmit: () => {},
-    //     handleDate: () => {}
-    // },
-    // states:{
-    //     errors: {
-    //         fullName: '',
-    //         email: '',
-    //         gender: ''
-    //     },
-    //     inputFields:{
-    //         fullName: '',
-    //         email: '',
-    //         gender: '',
-    //         date: ''
-    //     }
-    // }
+    actions:{
+        handleChange: () => {},
+        handleSubmit: () => {},
+        handleDate: () => {},
+        handleCheck: () => {}
+    },
+    states:{
+        checked: false,
+        errors: {
+            fullName: '',
+            email: '',
+            gender: '',
+            date: '',
+            accommodation: ''
+        },
+        inputFields:{
+            fullName: '',
+            email: '',
+            gender: '',
+            date: '',
+            accommodation: ''
+        }
+    }
 })
 
 export const FormProvider = ({children}: PropsWithChildren) => {

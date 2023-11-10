@@ -18,6 +18,10 @@ export function useFormValidation(){
     setValue(newValue)
   }
   
+  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
+
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
     console.log('oooooooo', location);
@@ -34,6 +38,11 @@ export function useFormValidation(){
     if (!inputValues.gender){
       errors.gender = "Select a gender"
     }
+
+    if(!inputValues.accommodation){
+      errors.accommodation = "Select a method of accommodation"
+    }
+
     if (!inputValues.date){
       errors.date = "Select a date"
     }
@@ -43,11 +52,13 @@ export function useFormValidation(){
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const [location, setLocation] = useState('');
+  const [checked, setChecked] = useState(true);
   const [inputFields, setInputFields] = useState({
       email: "",
       fullName: "",
       gender: "",
-      date: ""
+      date: "",
+      accommodation: ""
     });
     
     return {
@@ -57,13 +68,15 @@ export function useFormValidation(){
             handleSubmit,
             validateValues,
             handleDate,
+            handleCheck
         },
         states:{
             inputFields,
             errors,
             submitting,
             value,
-            location
+            location,
+            checked
         }
     }
 
