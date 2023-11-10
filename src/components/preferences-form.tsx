@@ -47,20 +47,20 @@ export function PreferencesForm() {
             <FormControlLabel
               control={<Checkbox />}
               label="Breakfast (+10 euros)"
-              onChange={formValidation.actions.handleCheck}
-              checked={formValidation.states.checked}
+              // onChange={formValidation.actions.handleCheck}
+              //checked={formValidation.states.checked}
             />
             <FormControlLabel
               control={<Checkbox />}
               label="Lunch (+15 euros)"
-              onChange={formValidation.actions.handleCheck}
-              checked={formValidation.states.checked}
+              //onChange={formValidation.actions.handleCheck}
+              //checked={formValidation.states.checked}
             />
             <FormControlLabel
               control={<Checkbox />}
               label="Dinner (+15 euros)"
-              checked={formValidation.states.checked}
-              onChange={formValidation.actions.handleCheck}
+              //checked={formValidation.states.checked}
+              //onChange={formValidation.actions.handleCheck}
             />
           </FormGroup>
           <FormGroup>

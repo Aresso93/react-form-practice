@@ -19,14 +19,7 @@ const steps = ['You', 'Your destination', 'Your preferences'];
 
 export default function TravelStepper() {
   const stepperControls = useStepperControls()
-   const formValidation = useFormContentContext()
-  let [checked, setChecked] = useState(false)
-  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
-
-  useEffect(() => {
-  }, [handleCheck]);
+  const formValidation = useFormContentContext()
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -59,12 +52,13 @@ export default function TravelStepper() {
           <FormGroup>
           <FormControlLabel 
           required control={<Checkbox />} 
+          checked={formValidation.states.submitChecked}
           label="I accept"
-          onChange={handleCheck}
+          onChange={formValidation.actions.handleSubmitCheck}
           />
         </FormGroup>
 
-        {checked === false ?
+        {formValidation.states.submitChecked === false ?
         <Button 
         disabled
         variant="contained"

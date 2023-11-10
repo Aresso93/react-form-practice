@@ -8,6 +8,13 @@ export function useFormValidation(){
     setInputFields({ ...inputFields, [e.target.name]: e.target.value });
   };
   
+  const handleSubmitCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSubmitChecked(event.target.checked);
+  };
+  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
+
   const handleSubmit = () => {
     setErrors(validateValues(inputFields));
     setSubmitting(true);
@@ -18,9 +25,6 @@ export function useFormValidation(){
     setValue(newValue)
   }
   
-  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
 
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
@@ -53,6 +57,7 @@ export function useFormValidation(){
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const [location, setLocation] = useState('');
   const [checked, setChecked] = useState(true);
+  let [submitChecked, setSubmitChecked] = useState(false)
   const [inputFields, setInputFields] = useState({
       email: "",
       fullName: "",
@@ -68,6 +73,7 @@ export function useFormValidation(){
             handleSubmit,
             validateValues,
             handleDate,
+            handleSubmitCheck,
             handleCheck
         },
         states:{
@@ -76,7 +82,8 @@ export function useFormValidation(){
             submitting,
             value,
             location,
-            checked
+            checked,
+            submitChecked
         }
     }
 
