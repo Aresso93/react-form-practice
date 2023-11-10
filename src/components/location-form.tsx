@@ -10,7 +10,7 @@ import dayjs, { Dayjs } from 'dayjs';
 export default function LocationForm() {
   const [location, setLocation] = useState('');
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
     console.log(location);
   };
@@ -28,10 +28,9 @@ export default function LocationForm() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          defaultValue=''
           value={location}
           label="Available locations"
-          onChange={handleChange}
+          onChange={handleLocationChange}
           >
           <MenuItem value={'Genoa'}>Genoa</MenuItem>
           <MenuItem value={'Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch'}>Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch</MenuItem>

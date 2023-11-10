@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { SelectChangeEvent } from "@mui/material";
+import dayjs, { Dayjs } from "dayjs";
+import { SetStateAction, useState } from "react";
 
 export function useFormValidation(){
   
@@ -9,8 +11,18 @@ export function useFormValidation(){
   const handleSubmit = () => {
     setErrors(validateValues(inputFields));
     setSubmitting(true);
+    console.log('HADOKEN');
   };
+
+  const handleDate = (newValue: SetStateAction<dayjs.Dayjs | null>) =>{
+    setValue(newValue)
+  }
   
+  const handleLocationChange = (event: SelectChangeEvent) => {
+    setLocation(event.target.value as string);
+    console.log(location);
+  };
+
   const validateValues = (inputValues) => {
     let errors = {};
     if (!inputValues.email.includes('.') && inputValues.email.length <= 10) {
@@ -29,6 +41,8 @@ export function useFormValidation(){
   };
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+  const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
+  const [location, setLocation] = useState('');
   const [inputFields, setInputFields] = useState({
       email: "",
       fullName: "",
@@ -39,13 +53,17 @@ export function useFormValidation(){
     return {
         actions:{
             handleChange,
+            handleLocationChange,
             handleSubmit,
             validateValues,
+            handleDate,
         },
         states:{
             inputFields,
             errors,
-            submitting
+            submitting,
+            value,
+            location
         }
     }
 

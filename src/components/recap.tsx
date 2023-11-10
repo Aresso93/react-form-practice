@@ -1,4 +1,7 @@
+import { useFormContentContext } from "../contexts/formContentContext";
+
 export function Recap() {
+  const formValidation = useFormContentContext()
 
   return (
     <>
@@ -17,10 +20,10 @@ export function Recap() {
       </div>
     The information you're going to submit: <br />
     <div className="btn-ctn">
-    Full name: John Johnson 
-    Date of birth: 25/05/1993
-    Gender: other
-    Email address: bla.bla@fakemail.com
+    Full name: {formValidation.states.inputFields.fullName}
+    Date of birth: {formValidation.states.inputFields.date}
+    Gender: {formValidation.states.inputFields.gender}
+    Email address: {formValidation.states.inputFields.email}
     <button>Edit this section</button>
     </div>
     <div className="btn-ctn">

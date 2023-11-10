@@ -13,12 +13,13 @@ import { useStepperControls } from './hooks/useStepperControls';
 import { useFormValidation } from './hooks/useFormValidation';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useFormContentContext } from '../contexts/formContentContext';
 
 const steps = ['You', 'Your destination', 'Your preferences'];
 
 export default function TravelStepper() {
   const stepperControls = useStepperControls()
-  const formValidation = useFormValidation()
+   const formValidation = useFormContentContext()
   let [checked, setChecked] = useState(false)
   const handleCheck = () => {
     if(checked){

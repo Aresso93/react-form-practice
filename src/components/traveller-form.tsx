@@ -5,9 +5,8 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { useFormValidation } from './hooks/useFormValidation';
 import { useFormContentContext } from '../contexts/formContentContext';
 
 export default function TravellerForm() {
@@ -37,18 +36,14 @@ export default function TravellerForm() {
     <p className="error">Name should include first AND last name</p>
     ) : null}
 
-    {/* <DatePicker 
-    value={value}
+    <DatePicker 
+    value={formValidation.states.value}
     label="travel date picker"
-    onChange={(newValue) => {
-      setValue(newValue)
-      const stringDate = newValue?.toString()
-      console.log(stringDate)
-    }}/> */}
+    onChange={(newValue) => formValidation.actions.handleDate(newValue)}/>
 
-    {formValidation.states.errors.date ? (
+    {/* {formValidation.states.errors.date ? (
             <p className="error">Please select a valid date</p>
-          ) : null}
+          ) : null} */}
 
     <FormControl>
       <FormLabel id="demo-radio-buttons-group-label">Pick your gender*</FormLabel>
@@ -83,10 +78,10 @@ export default function TravellerForm() {
     {Object.keys(formValidation.states.errors).length === 0 && formValidation.states.submitting ? (
         <span>Successfully submitted ✓</span>
       ) : null}
-      {/* <button
+      <button
       onClick={formValidation.actions.handleSubmit}
       >AAAAAAAAAA
-      </button> */}
+      </button>
    </div>
   );
 }
