@@ -5,13 +5,15 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { useFormValidation } from './hooks/useFormValidation';
+import { useFormContentContext } from '../contexts/formContentContext';
 
 export default function TravellerForm() {
+
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
-  const formValidation = useFormValidation()
+  const formValidation = useFormContentContext()
 
   useEffect(() => {
     
