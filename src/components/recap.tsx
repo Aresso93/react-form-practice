@@ -1,7 +1,9 @@
 import { useFormContentContext } from "../contexts/formContentContext";
+import { useStepperControls } from "./hooks/useStepperControls";
 
 export function Recap() {
   const formValidation = useFormContentContext()
+  const stepperControls = useStepperControls()
 
   return (
     <>
@@ -24,19 +26,21 @@ export function Recap() {
     Date of birth: {formValidation.states.inputFields.date} <br></br>
     Gender: {formValidation.states.inputFields.gender} <br></br> 
     Email address: {formValidation.states.inputFields.email} <br></br>
-    <button>Edit this section</button>
+    <button>
+      Edit this section
+      </button>
     </div>
     <div className="btn-ctn">
     Destination: {formValidation.states.location} <br></br>
-    Date of departure: 50/01/2300
-    Date of return: 52/01/2300   
+    Date of departure: 50/01/2300 <br></br>
+    Date of return: 52/01/2300 <br></br>
     <button>Edit this section</button> 
     </div>
 
     <div className="btn-ctn">
-    Method of accommodation: {formValidation.states.inputFields.accommodation}
-    Meals you are going to have on your holiday: A, B, C 
-    Extra activities: D, E and F
+    Method of accommodation: {formValidation.states.inputFields.accommodation} <br></br>
+    Meals you are going to have on your holiday: A, B, C  <br></br>
+    Extra activities: D, E and F <br></br>
     <button>Edit this section</button>
     {/* questo bottone porterà la sezione attiva su quella corrispondente permettendo di modificare le info lì presenti */}
     </div>
