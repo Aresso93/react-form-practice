@@ -3,8 +3,7 @@ import { useStepperControls } from "./hooks/useStepperControls";
 
 export function Recap() {
   const formValidation = useFormContentContext();
-  const stepperControls = useStepperControls();
-  console.log(stepperControls.state.activeStep)
+  
   function arrayDisplayer(meals:{}){
     meals = formValidation.states.meals
     let mealsArrayOfArrays = Object.entries(meals)
@@ -54,7 +53,7 @@ export function Recap() {
         Date of birth: {formValidation.states.dates.value.toString()}  <br></br>
         Gender: {formValidation.states.inputFields.gender} <br></br>
         Email address: {formValidation.states.inputFields.email} <br></br>
-        <button onClick={stepperControls.actions.handleStep1}>
+        <button onClick={formValidation.actions.handleReset}>
           Back to this section
         </button>
         </div>
@@ -62,7 +61,7 @@ export function Recap() {
         Destination: {formValidation.states.location} <br></br>
         Date of departure: {formValidation.states.dates.departureValue.toString()}<br></br>
         Date of return: {formValidation.states.dates.returnValue.toString()}<br></br>
-        <button>Back to this section</button>
+        <button onClick={formValidation.actions.handleStep1}>Back to this section</button>
         </div>
         <div className="recap">
         Method of accommodation:{" "}
@@ -80,8 +79,7 @@ export function Recap() {
           <div>{activities} </div>
         ))}
         </div>
-        <button>Back to this section</button>
-        {/* questo bottone porterà la sezione attiva su quella corrispondente permettendo di modificare le info lì presenti */}
+        <button onClick={formValidation.actions.handleStep2}>Back to this section</button>
         </div>
       </div>
     </>

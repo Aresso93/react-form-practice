@@ -6,6 +6,25 @@ export function useFormValidation() {
   const handleChange = (e: { target }) => {
     setInputFields({ ...inputFields, [e.target.name]: e.target.value });
   };
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleStep1 = () => {
+    setActiveStep(1)
+  }
+
+  const handleStep2 = () => {
+    setActiveStep(2)
+  }
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
   const handleSubmitCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSubmitChecked(event.target.checked);
   };
@@ -74,7 +93,7 @@ export function useFormValidation() {
     culturalTour: false,
     sports: false,
   });
-
+  const [activeStep, setActiveStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState<Dayjs | null>(dayjs("2023-01-15"));
   const [departureValue, setDepartureValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
@@ -103,8 +122,14 @@ export function useFormValidation() {
       handleDeparture,
       handleReturn,
       handleSubmitCheck,
+      handleBack,
+      handleNext,
+      handleReset,
+      handleStep1,
+      handleStep2
     },
     states: {
+      activeStep,
       meals: {
         breakfast,
         lunch,
