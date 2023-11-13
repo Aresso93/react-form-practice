@@ -23,16 +23,19 @@ export function useFormValidation() {
 
   const handleMealChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMeals({ ...meals, [event.target.name]: event.target.checked });
-    let mealsArrayOfArrays = Object.entries(meals);
-    let tempArray = []
-    for (let i = 0; i < mealsArrayOfArrays.length; i++) {
-      let mealsArray = mealsArrayOfArrays[i];
-      console.log('VVVVVV', mealsArray)
-      if (mealsArray[1] === true) {
-        tempArray.push(mealsArray[0])
-      }
-    }
-    console.log('KKKKKKKK', tempArray)
+
+
+    // let mealsArrayOfArrays = Object.entries(meals);
+    // let tempArray = []
+    // for (let i = 0; i < mealsArrayOfArrays.length; i++) {
+    //   let mealsArray = mealsArrayOfArrays[i];
+    //   console.log('VVVVVV', mealsArray)
+    //   if (mealsArray[1] === true) {
+    //     tempArray.push(mealsArray[0])
+    //   }
+    // }
+    // console.log('KKKKKKKK', tempArray)
+    // return tempArray
   };
 
   const handleActivityChange = (event: React.ChangeEvent<HTMLInputElement>) => {

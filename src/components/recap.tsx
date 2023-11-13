@@ -4,6 +4,20 @@ import { useStepperControls } from "./hooks/useStepperControls";
 export function Recap() {
   const formValidation = useFormContentContext();
   const stepperControls = useStepperControls();
+  
+  function arrayDisplayer(meals:{}){
+    meals = formValidation.states.meals
+    let mealsArrayOfArrays = Object.keys(meals)
+    let tempArray = []
+    for (let i = 0; i < mealsArrayOfArrays.length; i++) {
+      let mealsArray = mealsArrayOfArrays[i];
+      if (mealsArray[1] === true) {
+        tempArray.push(mealsArray[0])
+      }
+      return tempArray
+    }
+    
+  }
 
   return (
     <>
@@ -38,7 +52,10 @@ export function Recap() {
         <div className="recap">
         Method of accommodation:{" "}
         {formValidation.states.inputFields.accommodation} <br></br>
-        Meals you are going to have on your holiday: <br></br>
+        Meals you are going to have on your holiday: 
+        {arrayDisplayer(formValidation.states.meals)}
+        
+        <br></br>
         Extra activities: D, E and F <br></br>
         <button>Back to this section</button>
         {/* questo bottone porterà la sezione attiva su quella corrispondente permettendo di modificare le info lì presenti */}
