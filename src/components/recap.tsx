@@ -20,6 +20,22 @@ export function Recap() {
     return (tempArray)
     
   }
+  function arrayDisplayer2(activities:{}){
+    activities = formValidation.states.activities
+    let activitiesArrayOfArrays = Object.entries(activities)
+    let tempArray = []
+    for (let i = 0; i < activitiesArrayOfArrays.length; i++) {
+      let activitiesArray = activitiesArrayOfArrays[i];
+      if (activitiesArray[1] === true) {
+        tempArray.push(activitiesArray[0])
+        console.log(tempArray)
+      }
+    }
+
+    console.log(tempArray)
+    return (tempArray)
+    
+  }
 
   return (
     <>
@@ -55,14 +71,18 @@ export function Recap() {
         Method of accommodation:{" "}
         {formValidation.states.inputFields.accommodation} <br></br>
         You have selected the following meals:
-        <ul>
+        <div>
         {arrayDisplayer(formValidation.states.meals).map((meal)=> (
-          <li>{meal} </li>
+          <div>{meal} </div>
         ))}
-        </ul> 
-        
-        <br></br>
-        Extra activities: D, E and F <br></br>
+        </div> 
+      
+        You have selected the following extra activities: 
+        <div>
+        {arrayDisplayer2(formValidation.states.activities).map((activities)=> (
+          <div>{activities} </div>
+        ))}
+        </div>
         <button>Back to this section</button>
         {/* questo bottone porterà la sezione attiva su quella corrispondente permettendo di modificare le info lì presenti */}
         </div>
