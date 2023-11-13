@@ -13,7 +13,9 @@ export const FormContentContext = createContext({
         handleReturn: () => {},
     },
     states:{
+        submitting: false,
         checked: false,
+        submitChecked: false,
         location: '',
         dates:{
         value: '',

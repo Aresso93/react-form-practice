@@ -4,8 +4,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { DatePicker } from '@mui/x-date-pickers';
-import { useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
 import { useFormContentContext } from '../contexts/formContentContext';
 
 export default function LocationForm() {

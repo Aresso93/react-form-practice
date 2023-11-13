@@ -4,6 +4,7 @@ import { useStepperControls } from "./hooks/useStepperControls";
 export function Recap() {
   const formValidation = useFormContentContext();
   const stepperControls = useStepperControls();
+  console.log(stepperControls.state.activeStep)
   function arrayDisplayer(meals:{}){
     meals = formValidation.states.meals
     let mealsArrayOfArrays = Object.entries(meals)
