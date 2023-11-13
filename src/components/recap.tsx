@@ -26,7 +26,9 @@ export function Recap() {
     Date of birth: {formValidation.states.inputFields.date} <br></br>
     Gender: {formValidation.states.inputFields.gender} <br></br> 
     Email address: {formValidation.states.inputFields.email} <br></br>
-    <button>
+    <button
+    onClick={stepperControls.actions.handleStep1}
+    >
       Edit this section
       </button>
     </div>

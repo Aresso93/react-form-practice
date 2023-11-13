@@ -9,6 +9,7 @@ export function useStepperControls(){
     
       const handleStep1 = () => {
         setActiveStep(1)
+        console.log('PPPPPP')
       }
 
       const handleBack = () => {

@@ -116,8 +116,7 @@ export default function TravelStepper() {
             <Button 
             onClick={() => {
               formValidation.actions.handleSubmit()
-              if (formValidation.states.errors.email) {
-                
+              if (Object.keys(formValidation.states.errors).length !== 0) {
                 stepperControls.actions.handleNext()
               }
             }
