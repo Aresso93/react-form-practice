@@ -10,9 +10,7 @@ import { Recap } from './recap';
 import LocationForm from './location-form';
 import { PreferencesForm } from './preferences-form';
 import { useStepperControls } from './hooks/useStepperControls';
-import { useFormValidation } from './hooks/useFormValidation';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { useFormContentContext } from '../contexts/formContentContext';
 
 const steps = ['You', 'Your destination', 'Your preferences'];
@@ -104,7 +102,7 @@ export default function TravelStepper() {
             <LocationForm/>
             }
             {stepperControls.state.activeStep === 2 &&
-              <PreferencesForm/>
+            <PreferencesForm/>
             }
             <Button
               color="inherit"
@@ -118,7 +116,10 @@ export default function TravelStepper() {
             <Button 
             onClick={() => {
               formValidation.actions.handleSubmit()
-              stepperControls.actions.handleNext()
+              if (formValidation.states.errors.email) {
+                
+                stepperControls.actions.handleNext()
+              }
             }
             }
             >

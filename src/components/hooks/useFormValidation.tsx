@@ -6,32 +6,26 @@ export function useFormValidation(){
   const handleChange = (e: { target }) => {
     setInputFields({ ...inputFields, [e.target.name]: e.target.value });
   };
-  
   const handleSubmitCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSubmitChecked(event.target.checked);
   };
   const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
-
   const handleSubmit = () => {
     setErrors(validateValues(inputFields));
     setSubmitting(true);
     console.log('Submitted');
   };
-
   const handleDate = (newValue: SetStateAction<dayjs.Dayjs | null>) =>{
     setValue(newValue)
   }
-  
-
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
-    console.log('oooooooo', location);
   };
 
-  const validateValues = (inputValues) => {
-    let errors = {};
+  const validateValues = (inputValues: { email: string; fullName: string; gender: string; date: string; accommodation: string; }) => {
+    let errors = {email: '', fullName: '', gender: '', accommodation: '', date: ''};
     if (!inputValues.email.includes('.') && inputValues.email.length <= 10) {
       errors.email = "Email must include a @";
     }
@@ -56,7 +50,7 @@ export function useFormValidation(){
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const [location, setLocation] = useState('');
   const [checked, setChecked] = useState(true);
-  let [submitChecked, setSubmitChecked] = useState(false)
+  const [submitChecked, setSubmitChecked] = useState(false)
   const [inputFields, setInputFields] = useState({
       email: "",
       fullName: "",
