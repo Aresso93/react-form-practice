@@ -26,10 +26,14 @@ export function useFormValidation(){
   
   const handleMealChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMeals({ ...meals, [event.target.name]: event.target.checked });
-   
-    console.log(inputFields)
+    let mealsArrayOfArrays = Object.entries(meals)
+    
   };
-  
+
+  const handleActivityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMeals({ ...meals, [event.target.name]: event.target.checked });
+  }
+
   const validateValues = (inputValues: { email: string; fullName: string; gender: string; date: string; accommodation: string; }) => {
     let errors = {email: '', fullName: '', gender: '', accommodation: '', date: ''};
     if (!inputValues.email.includes('.') && inputValues.email.length <= 10) {
@@ -49,15 +53,17 @@ export function useFormValidation(){
     }
     return errors;
   };
-
+  
   
   const [errors, setErrors] = useState({});
   const [meals, setMeals] = useState({
     breakfast: false,
     lunch: false,
     dinner: false
-  });
-  const mealsArray = []
+  }
+  );
+  
+  console.log(meals)
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const [location, setLocation] = useState('');
@@ -78,6 +84,7 @@ export function useFormValidation(){
             handleChange,
             handleLocationChange,
             handleMealChange,
+            handleActivityChange,
             handleSubmit,
             validateValues,
             handleDate,
