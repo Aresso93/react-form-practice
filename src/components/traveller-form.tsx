@@ -5,7 +5,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useFormContentContext } from "../contexts/formContentContext";
 
 export default function TravellerForm() {
