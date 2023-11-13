@@ -7,15 +7,17 @@ export function Recap() {
   
   function arrayDisplayer(meals:{}){
     meals = formValidation.states.meals
-    let mealsArrayOfArrays = Object.keys(meals)
+    let mealsArrayOfArrays = Object.entries(meals)
     let tempArray = []
     for (let i = 0; i < mealsArrayOfArrays.length; i++) {
       let mealsArray = mealsArrayOfArrays[i];
       if (mealsArray[1] === true) {
         tempArray.push(mealsArray[0])
+        console.log(tempArray)
       }
-      return tempArray
     }
+    console.log(tempArray)
+    return (`${tempArray[0]}, ${tempArray[1]}, ${tempArray[2]}`)
     
   }
 
