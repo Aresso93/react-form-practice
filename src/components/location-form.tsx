@@ -30,7 +30,7 @@ export default function LocationForm() {
           onChange={formValidation.actions.handleLocationChange}
           >
           <MenuItem value={'Genoa'}>Genoa</MenuItem>
-          <MenuItem value={'Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch'}>Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch</MenuItem>
+          <MenuItem value={'Las Vegas'}>Las Vegas</MenuItem>
           <MenuItem value={'Mars'}>Mars</MenuItem>
         </Select>
       </FormControl>

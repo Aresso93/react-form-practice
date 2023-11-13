@@ -62,11 +62,15 @@
   display: flex;
   flex-direction: column;
   border-radius: 1ch;
-  width: 35%;
+  width: 30%;
 }
 
 .recap-container{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+ul, li{
+  list-style-type: none;
 }
