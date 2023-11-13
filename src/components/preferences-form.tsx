@@ -25,11 +25,7 @@ export function PreferencesForm() {
             name="accommodation"
             onChange={formValidation.actions.handleChange}
           >
-            <FormControlLabel
-              value="hotel"
-              control={<Radio />}
-              label="Hotel"
-            />
+            <FormControlLabel value="hotel" control={<Radio />} label="Hotel" />
             <FormControlLabel
               value="apartment"
               control={<Radio />}
@@ -46,32 +42,32 @@ export function PreferencesForm() {
             options)
             <FormControlLabel
               control={
-              <Checkbox
-              checked= {formValidation.states.meals.breakfast}
-              onChange={formValidation.actions.handleMealChange}
-              name="breakfast"
-              />
-            }
+                <Checkbox
+                  checked={formValidation.states.meals.breakfast}
+                  onChange={formValidation.actions.handleMealChange}
+                  name="breakfast"
+                />
+              }
               label="Breakfast"
             />
             <FormControlLabel
               control={
-              <Checkbox 
-              checked= {formValidation.states.meals.lunch}
-              onChange={formValidation.actions.handleMealChange}
-              name="lunch"
-              />}
+                <Checkbox
+                  checked={formValidation.states.meals.lunch}
+                  onChange={formValidation.actions.handleMealChange}
+                  name="lunch"
+                />
+              }
               label="Lunch"
-             
             />
             <FormControlLabel
               control={
-              <Checkbox 
-              checked= {formValidation.states.meals.dinner}
-              onChange={formValidation.actions.handleMealChange}
-              name="dinner"
-              />
-            }
+                <Checkbox
+                  checked={formValidation.states.meals.dinner}
+                  onChange={formValidation.actions.handleMealChange}
+                  name="dinner"
+                />
+              }
               label="Dinner"
             />
           </FormGroup>
@@ -80,29 +76,32 @@ export function PreferencesForm() {
             multiple options)
             <FormControlLabel
               control={
-              <Checkbox
-              checked = {formValidation.states.activities.trekking}
-              onChange={formValidation.actions.handleActivityChange}
-              name="trekking"
-              />
-            }
+                <Checkbox
+                  checked={formValidation.states.activities.trekking}
+                  onChange={formValidation.actions.handleActivityChange}
+                  name="trekking"
+                />
+              }
               label="Trekking"
             />
             <FormControlLabel
               control={
-              <Checkbox 
-              checked={formValidation.states.activities.culturalTour}
-              onChange={formValidation.actions.handleActivityChange}
-              name="culturalTour"
-              />}
+                <Checkbox
+                  checked={formValidation.states.activities.culturalTour}
+                  onChange={formValidation.actions.handleActivityChange}
+                  name="culturalTour"
+                />
+              }
               label="Cultural tour"
             />
             <FormControlLabel
-              control={<Checkbox 
-              checked={formValidation.states.activities.sports}
-              onChange={formValidation.actions.handleActivityChange}
-              name="sports"
-              />}
+              control={
+                <Checkbox
+                  checked={formValidation.states.activities.sports}
+                  onChange={formValidation.actions.handleActivityChange}
+                  name="sports"
+                />
+              }
               label="Sports"
             />
           </FormGroup>

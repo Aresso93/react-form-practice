@@ -55,3 +55,18 @@
   margin: 8px;
   gap: 4px;
 }
+
+.recap{
+  border: 1px solid black;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1ch;
+  width: 35%;
+}
+
+.recap-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

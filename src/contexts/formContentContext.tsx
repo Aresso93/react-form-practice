@@ -6,7 +6,6 @@ export const FormContentContext = createContext({
         handleChange: () => {},
         handleSubmit: () => {},
         handleDate: () => {},
-        handleCheck: () => {},
         handleLocationChange: () => {},
         handleMealChange: () => {},
         handleActivityChange: () => {}
@@ -37,7 +36,6 @@ export const FormContentContext = createContext({
             gender: '',
             date: '',
             accommodation: '',
-            meals: []
         }
     }
 })
