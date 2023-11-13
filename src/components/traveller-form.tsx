@@ -6,16 +6,12 @@ import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useEffect, useState } from "react";
-import dayjs, { Dayjs } from "dayjs";
 import { useFormContentContext } from "../contexts/formContentContext";
 
 export default function TravellerForm() {
-  const [value, setValue] = useState<Dayjs | null>(dayjs("2022-04-17"));
   const formValidation = useFormContentContext();
 
   useEffect(() => {}, [formValidation.states.errors]);
-
-  console.log("sul cambio", formValidation.states.inputFields);
 
   return (
     <div className="form-container">
@@ -38,14 +34,14 @@ export default function TravellerForm() {
       ) : null}
 
       <DatePicker
-        value={formValidation.states.value}
         label="travel date picker"
-        onChange={(newValue) => formValidation.actions.handleDate(newValue)}
+        value={formValidation.states.value}
+        onChange={formValidation.actions.handleDate}
       />
 
-      {/* {formValidation.states.errors.date ? (
+    {formValidation.states.errors.date ? (
             <p className="error">Please select a valid date</p>
-          ) : null} */}
+          ) : null} 
 
       <FormControl>
         <FormLabel id="demo-radio-buttons-group-label">

@@ -12,11 +12,8 @@ export function Recap() {
       let mealsArray = mealsArrayOfArrays[i];
       if (mealsArray[1] === true) {
         tempArray.push(mealsArray[0])
-        console.log(tempArray)
       }
     }
-
-    console.log(tempArray)
     return (tempArray)
     
   }
@@ -28,11 +25,10 @@ export function Recap() {
       let activitiesArray = activitiesArrayOfArrays[i];
       if (activitiesArray[1] === true) {
         tempArray.push(activitiesArray[0])
-        console.log(tempArray)
+        
       }
     }
 
-    console.log(tempArray)
     return (tempArray)
     
   }
@@ -54,7 +50,7 @@ export function Recap() {
       <div className="recap-container">
         <div className="recap">
         Full name: {formValidation.states.inputFields.fullName} <br></br>
-        Date of birth: {formValidation.states.inputFields.date} <br></br>
+        Date of birth: {formValidation.states.dates.value.toString()}  <br></br>
         Gender: {formValidation.states.inputFields.gender} <br></br>
         Email address: {formValidation.states.inputFields.email} <br></br>
         <button onClick={stepperControls.actions.handleStep1}>
@@ -63,8 +59,8 @@ export function Recap() {
         </div>
         <div className="recap">
         Destination: {formValidation.states.location} <br></br>
-        Date of departure: 50/01/2300 <br></br>
-        Date of return: 52/01/2300 <br></br>
+        Date of departure: {formValidation.states.dates.departureValue.toString()}<br></br>
+        Date of return: {formValidation.states.dates.returnValue.toString()}<br></br>
         <button>Back to this section</button>
         </div>
         <div className="recap">

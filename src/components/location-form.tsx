@@ -4,17 +4,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { DatePicker } from '@mui/x-date-pickers';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { useFormContentContext } from '../contexts/formContentContext';
 
 export default function LocationForm() {
-  const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
+  
   const formValidation = useFormContentContext()
-  useEffect(() => {
-    
-  }, [formValidation.states.location]);
-
   return (
     <>
     <div className='form-container'>
@@ -37,18 +33,13 @@ export default function LocationForm() {
     </Box>
     <DatePicker 
     label="date of departure*"
-    value={value}
-    onChange={(newValue) => {
-      setValue(newValue)
-    }}
+    value={formValidation.states.dates.departureValue}
+    onChange={formValidation.actions.handleDeparture}
     />
     <DatePicker 
     label="date of return*"
-    value={value}
-    onChange={(newValue) => {
-      setValue(newValue)
-      //console.log(newValue.$d)
-    }}
+    value={formValidation.states.dates.returnValue}
+    onChange={formValidation.actions.handleReturn}
     />
     </div>
       </>

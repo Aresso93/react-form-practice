@@ -20,7 +20,12 @@ export function useFormValidation() {
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
-
+  const handleDeparture = (newValue: SetStateAction<dayjs.Dayjs | null>) => {
+    setDepartureValue(newValue);
+  };
+  const handleReturn = (newValue: SetStateAction<dayjs.Dayjs | null>) => {
+    setReturnValue(newValue);
+  };
   const handleMealChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMeals({ ...meals, [event.target.name]: event.target.checked });
   };
@@ -33,7 +38,6 @@ export function useFormValidation() {
     email: string;
     fullName: string;
     gender: string;
-    date: string;
     accommodation: string;
   }) => {
     let errors = {
@@ -41,7 +45,6 @@ export function useFormValidation() {
       fullName: "",
       gender: "",
       accommodation: "",
-      date: "",
     };
     if (!inputValues.email.includes(".") && inputValues.email.length <= 10) {
       errors.email = "Email must include a @";
@@ -56,9 +59,7 @@ export function useFormValidation() {
     if (!inputValues.accommodation) {
       errors.accommodation = "Select a method of accommodation";
     }
-    if (!inputValues.date) {
-      errors.date = "Select a date";
-    }
+    
     return errors;
   };
 
@@ -74,18 +75,16 @@ export function useFormValidation() {
     sports: false,
   });
 
-  console.log(meals);
-  console.log(activities);
-
   const [submitting, setSubmitting] = useState(false);
-  const [value, setValue] = useState<Dayjs | null>(dayjs("2022-04-17"));
+  const [value, setValue] = useState<Dayjs | null>(dayjs("2023-01-15"));
+  const [departureValue, setDepartureValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
+  const [returnValue, setReturnValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const [location, setLocation] = useState("");
   const [submitChecked, setSubmitChecked] = useState(false);
   const [inputFields, setInputFields] = useState({
     email: "",
     fullName: "",
     gender: "",
-    date: "",
     accommodation: "",
   });
 
@@ -101,6 +100,8 @@ export function useFormValidation() {
       handleSubmit,
       validateValues,
       handleDate,
+      handleDeparture,
+      handleReturn,
       handleSubmitCheck,
     },
     states: {
@@ -117,9 +118,13 @@ export function useFormValidation() {
       inputFields,
       errors,
       submitting,
-      value,
       location,
       submitChecked,
+      dates:{
+        value,
+        departureValue,
+        returnValue,
+      }
     },
   };
 }

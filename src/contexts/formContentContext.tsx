@@ -8,11 +8,18 @@ export const FormContentContext = createContext({
         handleDate: () => {},
         handleLocationChange: () => {},
         handleMealChange: () => {},
-        handleActivityChange: () => {}
+        handleActivityChange: () => {},
+        handleDeparture: () => {},
+        handleReturn: () => {},
     },
     states:{
         checked: false,
         location: '',
+        dates:{
+        value: '',
+        departureValue: '',
+        returnValue: '',
+        },
         meals:{
             breakfast: false,
             lunch: false,
