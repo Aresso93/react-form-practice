@@ -31,8 +31,9 @@ export function useFormValidation(){
   };
 
   const handleActivityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMeals({ ...meals, [event.target.name]: event.target.checked });
-  }
+    setActivities({ ...activities, [event.target.name]: event.target.checked });
+    
+  };
 
   const validateValues = (inputValues: { email: string; fullName: string; gender: string; date: string; accommodation: string; }) => {
     let errors = {email: '', fullName: '', gender: '', accommodation: '', date: ''};
@@ -62,8 +63,17 @@ export function useFormValidation(){
     dinner: false
   }
   );
+  const [activities, setActivities] = useState({
+    trekking: false,
+    culturalTour: false,
+    sports: false
+  }
+  );
   
   console.log(meals)
+  console.log(activities);
+  
+
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const [location, setLocation] = useState('');
@@ -78,6 +88,7 @@ export function useFormValidation(){
   });
   
   const {breakfast, lunch, dinner} = meals;
+  const {trekking, culturalTour, sports} = activities;
   
   return {
         actions:{
@@ -96,6 +107,11 @@ export function useFormValidation(){
               breakfast,
               lunch,
               dinner
+            },
+            activities:{
+              trekking,
+              culturalTour,
+              sports,
             },
             inputFields,
             errors,

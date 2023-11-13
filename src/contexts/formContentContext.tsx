@@ -9,6 +9,7 @@ export const FormContentContext = createContext({
         handleCheck: () => {},
         handleLocationChange: () => {},
         handleMealChange: () => {},
+        handleActivityChange: () => {}
     },
     states:{
         checked: false,
@@ -17,6 +18,11 @@ export const FormContentContext = createContext({
             breakfast: false,
             lunch: false,
             dinner: false,
+        },
+        activities:{
+            trekking: false,
+            culturalTour: false,
+            sports: false,
         },
         errors: {
             fullName: '',

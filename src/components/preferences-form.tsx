@@ -55,33 +55,54 @@ export function PreferencesForm() {
               label="Breakfast"
             />
             <FormControlLabel
-              control={<Checkbox />}
-              label="Lunch"
+              control={
+              <Checkbox 
               checked= {formValidation.states.meals.lunch}
               onChange={formValidation.actions.handleMealChange}
               name="lunch"
+              />}
+              label="Lunch"
+             
             />
             <FormControlLabel
-              control={<Checkbox />}
-              label="Dinner"
+              control={
+              <Checkbox 
               checked= {formValidation.states.meals.dinner}
               onChange={formValidation.actions.handleMealChange}
               name="dinner"
+              />
+            }
+              label="Dinner"
             />
           </FormGroup>
           <FormGroup>
             Pick the extra activities you want to take part in (you can select
             multiple options)
             <FormControlLabel
-              control={<Checkbox />}
+              control={
+              <Checkbox
+              checked = {formValidation.states.activities.trekking}
+              onChange={formValidation.actions.handleActivityChange}
+              name="trekking"
+              />
+            }
               label="Trekking"
             />
             <FormControlLabel
-              control={<Checkbox />}
+              control={
+              <Checkbox 
+              checked={formValidation.states.activities.culturalTour}
+              onChange={formValidation.actions.handleActivityChange}
+              name="culturalTour"
+              />}
               label="Cultural tour"
             />
             <FormControlLabel
-              control={<Checkbox />}
+              control={<Checkbox 
+              checked={formValidation.states.activities.sports}
+              onChange={formValidation.actions.handleActivityChange}
+              name="sports"
+              />}
               label="Sports"
             />
           </FormGroup>
