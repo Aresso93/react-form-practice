@@ -23,7 +23,13 @@ export function useFormValidation(){
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
-
+  
+  const handleMealChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMeals({ ...meals, [event.target.name]: event.target.checked });
+   
+    console.log(inputFields)
+  };
+  
   const validateValues = (inputValues: { email: string; fullName: string; gender: string; date: string; accommodation: string; }) => {
     let errors = {email: '', fullName: '', gender: '', accommodation: '', date: ''};
     if (!inputValues.email.includes('.') && inputValues.email.length <= 10) {
@@ -43,24 +49,35 @@ export function useFormValidation(){
     }
     return errors;
   };
+
+  
   const [errors, setErrors] = useState({});
+  const [meals, setMeals] = useState({
+    breakfast: false,
+    lunch: false,
+    dinner: false
+  });
+  const mealsArray = []
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const [location, setLocation] = useState('');
   const [checked, setChecked] = useState(true);
   const [submitChecked, setSubmitChecked] = useState(false)
   const [inputFields, setInputFields] = useState({
-      email: "",
-      fullName: "",
-      gender: "",
-      date: "",
-      accommodation: ""
-    });
-    
-    return {
+    email: "",
+    fullName: "",
+    gender: "",
+    date: "",
+    accommodation: "",
+  });
+  
+  const {breakfast, lunch, dinner} = meals;
+  
+  return {
         actions:{
             handleChange,
             handleLocationChange,
+            handleMealChange,
             handleSubmit,
             validateValues,
             handleDate,
@@ -68,6 +85,11 @@ export function useFormValidation(){
             handleCheck
         },
         states:{
+            meals:{
+              breakfast,
+              lunch,
+              dinner
+            },
             inputFields,
             errors,
             submitting,

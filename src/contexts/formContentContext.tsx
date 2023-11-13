@@ -8,10 +8,16 @@ export const FormContentContext = createContext({
         handleDate: () => {},
         handleCheck: () => {},
         handleLocationChange: () => {},
+        handleMealChange: () => {},
     },
     states:{
         checked: false,
         location: '',
+        meals:{
+            breakfast: false,
+            lunch: false,
+            dinner: false,
+        },
         errors: {
             fullName: '',
             email: '',
@@ -24,7 +30,8 @@ export const FormContentContext = createContext({
             email: '',
             gender: '',
             date: '',
-            accommodation: ''
+            accommodation: '',
+            meals: []
         }
     }
 })

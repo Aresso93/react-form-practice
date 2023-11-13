@@ -41,7 +41,7 @@ export function Recap() {
 
     <div className="btn-ctn">
     Method of accommodation: {formValidation.states.inputFields.accommodation} <br></br>
-    Meals you are going to have on your holiday: A, B, C  <br></br>
+    Meals you are going to have on your holiday: {formValidation.states.inputFields.meals.length}  <br></br>
     Extra activities: D, E and F <br></br>
     <button>Edit this section</button>
     {/* questo bottone porterà la sezione attiva su quella corrispondente permettendo di modificare le info lì presenti */}

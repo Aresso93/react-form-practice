@@ -45,22 +45,28 @@ export function PreferencesForm() {
             Pick the meals you want during your stay (you can select multiple
             options)
             <FormControlLabel
-              control={<Checkbox />}
+              control={
+              <Checkbox
+              checked= {formValidation.states.meals.breakfast}
+              onChange={formValidation.actions.handleMealChange}
+              name="breakfast"
+              />
+            }
               label="Breakfast"
-              onChange={formValidation.actions.handleCheck}
-              checked={formValidation.states.checked}
             />
             <FormControlLabel
               control={<Checkbox />}
               label="Lunch"
-              onChange={formValidation.actions.handleCheck}
-              checked={formValidation.states.checked}
+              checked= {formValidation.states.meals.lunch}
+              onChange={formValidation.actions.handleMealChange}
+              name="lunch"
             />
             <FormControlLabel
               control={<Checkbox />}
               label="Dinner"
-              checked={formValidation.states.checked}
-              onChange={formValidation.actions.handleCheck}
+              checked= {formValidation.states.meals.dinner}
+              onChange={formValidation.actions.handleMealChange}
+              name="dinner"
             />
           </FormGroup>
           <FormGroup>
