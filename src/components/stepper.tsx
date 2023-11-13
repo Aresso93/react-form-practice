@@ -115,10 +115,10 @@ export default function TravelStepper() {
             <Box sx={{ flex: '1 1 auto' }} />
             <Button 
             onClick={() => {
-              formValidation.actions.handleSubmit()
-              if (Object.keys(formValidation.states.errors).length !== 0) {
+              //formValidation.actions.handleSubmit()
+              //if (Object.keys(formValidation.states.errors).length !== 0) {
                 stepperControls.actions.handleNext()
-              }
+              //}
             }
             }
             >

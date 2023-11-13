@@ -53,7 +53,10 @@ export default function TravellerForm() {
         </FormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue=" "
+          defaultValue=""
+          style={{
+            border: formValidation.states.errors.gender ? "1px solid red" : null,
+          }}
           name="gender"
           onChange={formValidation.actions.handleChange}
         >

@@ -6,10 +6,12 @@ export const FormContentContext = createContext({
         handleChange: () => {},
         handleSubmit: () => {},
         handleDate: () => {},
-        handleCheck: () => {}
+        handleCheck: () => {},
+        handleLocationChange: () => {},
     },
     states:{
         checked: false,
+        location: '',
         errors: {
             fullName: '',
             email: '',

@@ -2,27 +2,22 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import { DatePicker } from '@mui/x-date-pickers';
 import { useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { useFormContentContext } from '../contexts/formContentContext';
 
 export default function LocationForm() {
-  const [location, setLocation] = useState('');
   const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
   const formValidation = useFormContentContext()
-  const handleLocationChange = (event: SelectChangeEvent) => {
-    setLocation(event.target.value as string);
-  };
   useEffect(() => {
     
-  }, [location]);
+  }, [formValidation.states.location]);
 
   return (
     <>
     <div className='form-container'>
-   
     <Box sx={{ minWidth: 200 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Pick your destination*</InputLabel>
@@ -45,7 +40,6 @@ export default function LocationForm() {
     value={value}
     onChange={(newValue) => {
       setValue(newValue)
-      console.log(newValue.$d)
     }}
     />
     <DatePicker 
@@ -53,7 +47,7 @@ export default function LocationForm() {
     value={value}
     onChange={(newValue) => {
       setValue(newValue)
-      console.log(newValue.$d)
+      //console.log(newValue.$d)
     }}
     />
     </div>

@@ -35,11 +35,9 @@ export function useFormValidation(){
     if (!inputValues.gender){
       errors.gender = "Select a gender"
     }
-
     if(!inputValues.accommodation){
       errors.accommodation = "Select a method of accommodation"
     }
-
     if (!inputValues.date){
       errors.date = "Select a date"
     }
@@ -79,5 +77,4 @@ export function useFormValidation(){
             submitChecked
         }
     }
-
 }
