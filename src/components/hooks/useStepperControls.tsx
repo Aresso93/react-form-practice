@@ -5,6 +5,7 @@ export function useStepperControls(){
  
     const handleNext = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      console.log('next')
     };
   
     const handleStep1 = () => {

@@ -12,12 +12,15 @@ import { PreferencesForm } from "./preferences-form";
 import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import { useFormContentContext } from "../contexts/formContentContext";
 import { useStepperControls } from "./hooks/useStepperControls";
+import { useEffect } from "react";
 
 const steps = ["You", "Your destination", "Your preferences"];
 export default function TravelStepper() {
+  
   const formValidation = useFormContentContext();
   const stepperControls = useStepperControls()
-
+  
+  console.log('AAAAAAAAAAA', formValidation.states.errors.email)
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper activeStep={stepperControls.activeStep}>
@@ -111,10 +114,11 @@ export default function TravelStepper() {
             <Button
               onClick={() => {
                 formValidation.actions.handleSubmit()
-                if ((formValidation.states.errors) = {email: "", fullName: "", gender: ""}) {
+                if (formValidation.states.errors.email === '' ) {
                   stepperControls.actions.handleNext();
-              }
-              console.log(formValidation.states.errors)
+                }
+              console.log(Object.values(formValidation.states.errors))
+              console.log(Object.values(formValidation.states.errors).length)
               }}
             >
               {stepperControls.activeStep === steps.length - 1
