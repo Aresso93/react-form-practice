@@ -27,7 +27,6 @@ export function useFormValidation() {
     email: "",
     fullName: "",
     gender: "",
-    //accommodation: "",
   });
   
   // STATES-----------------------------------------------------------------------
@@ -73,13 +72,12 @@ export function useFormValidation() {
     email: string;
     fullName: string;
     gender: string;
-    //accommodation: string;
+    accommodation: string;
   }) => {
     let errors = {
       email: "",
       fullName: "",
-      gender: "",
-      //accommodation: "",
+      gender: ""
     };
     if (!inputValues.email.includes(".") && inputValues.email.length <= 10) {
       errors.email = "Email must include a @";
@@ -91,12 +89,22 @@ export function useFormValidation() {
     if (!inputValues.gender) {
       errors.gender = "Select a gender";
     }
-    //if (!inputValues.accommodation) {
-    //  errors.accommodation = "Select a method of accommodation";
-    //}
+    // if (!inputValues.accommodation) {
+    //   errors.accommodation = "Select a method of accommodation";
+    // }
     
     return errors;
   };
+
+  const accommodationValidation = (inputValue: {accommodation: string}) =>{
+    let accommodationError = {accommodation: ""};
+
+    if (!inputValue) {
+        accommodationError.accommodation = "Select an option"     
+    }
+
+    return accommodationError
+  }
 
   // METHODS----------------------------------------------------------------------
 
@@ -111,6 +119,7 @@ export function useFormValidation() {
       handleActivityChange,
       handleSubmit,
       validateValues,
+      accommodationValidation,
       handleDate,
       handleDeparture,
       handleReturn,

@@ -22,6 +22,9 @@ export default function LocationForm() {
           value={formValidation.states.location}
           label="Available locations"
           onChange={formValidation.actions.handleLocationChange}
+          style={{
+            border: formValidation.states.errors.accommodation ? "1px solid red" : "0px",
+          }}
           >
           <MenuItem value={'Genoa'}>Genoa</MenuItem>
           <MenuItem value={'Las Vegas'}>Las Vegas</MenuItem>

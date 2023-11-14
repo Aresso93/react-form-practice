@@ -19,13 +19,17 @@ export default function TravelStepper() {
   
   const formValidation = useFormContentContext();
   const stepperControls = useStepperControls()
+
   useEffect(() => {
-    if (formValidation.states.errors.email === '' ) {
+    if (formValidation.states.errors.email === '' && formValidation.states.errors.fullName === '' && formValidation.states.errors.gender === '') {
       stepperControls.actions.handleNext();
     }
   }, [formValidation.states.errors]);
   
-  console.log('AAAAAAAAAAA', formValidation.states.errors.email)
+  useEffect(() => {
+
+  })
+
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper activeStep={stepperControls.activeStep}>
