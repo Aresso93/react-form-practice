@@ -40,10 +40,10 @@ export function Recap() {
           Gender: {formValidation.states.inputFields.gender} <br></br>
           Email address: {formValidation.states.inputFields.email} <br></br>
           <Button
-            onClick={formValidation.actions.handleReset}
+            // onClick={formValidation.actions.handleReset}
             variant="outlined"
           >
-            Back to this section
+            Edit this section
           </Button>
         </div>
         <div className="recap">
@@ -54,9 +54,9 @@ export function Recap() {
           <br></br>
           <Button
             variant="outlined"
-            onClick={formValidation.actions.handleStep1}
+            // onClick={formValidation.actions.handleStep1}
           >
-            Back to this section
+            Edit this section
           </Button>
         </div>
         <div className="recap">
@@ -78,9 +78,9 @@ export function Recap() {
           </div>
           <Button
             variant="outlined"
-            onClick={formValidation.actions.handleStep2}
+            // onClick={formValidation.actions.handleStep2}
           >
-            Back to this section
+            Edit this section
           </Button>
         </div>
       </div>

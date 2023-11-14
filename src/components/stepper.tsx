@@ -11,14 +11,16 @@ import LocationForm from "./location-form";
 import { PreferencesForm } from "./preferences-form";
 import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import { useFormContentContext } from "../contexts/formContentContext";
+import { useStepperControls } from "./hooks/useStepperControls";
 
 const steps = ["You", "Your destination", "Your preferences"];
 export default function TravelStepper() {
   const formValidation = useFormContentContext();
+  const stepperControls = useStepperControls()
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={formValidation.states.activeStep}>
+      <Stepper activeStep={stepperControls.activeStep}>
         {steps.map((label) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
@@ -26,7 +28,7 @@ export default function TravelStepper() {
           } = {};
 
           {
-            if (formValidation.states.activeStep === 0) {
+            if (stepperControls.activeStep === 0) {
               <TravellerForm />;
             }
           }
@@ -37,7 +39,7 @@ export default function TravelStepper() {
           );
         })}
       </Stepper>
-      {formValidation.states.activeStep === steps.length ? (
+      {stepperControls.activeStep === steps.length ? (
         <React.Fragment>
           <div className="btn-ctn">
             <Typography sx={{ mt: 2, mb: 1 }}>
@@ -62,7 +64,7 @@ export default function TravelStepper() {
               ) : (
                 <Button
                   variant="contained"
-                  onClick={formValidation.actions.handleReset}
+                  onClick={stepperControls.actions.handleReset}
                 >
                   Submit
                 </Button>
@@ -73,15 +75,15 @@ export default function TravelStepper() {
 
           <div className="btn-ctn">
             <Button
-              onClick={formValidation.actions.handleReset}
+              onClick={stepperControls.actions.handleReset}
               variant="contained"
             >
               Fill out a new form
             </Button>
             <Button
               color="inherit"
-              disabled={formValidation.states.activeStep === 0}
-              onClick={formValidation.actions.handleBack}
+              disabled={stepperControls.activeStep === 0}
+              onClick={stepperControls.actions.handleBack}
               sx={{ mr: 1 }}
             >
               Back
@@ -91,16 +93,16 @@ export default function TravelStepper() {
       ) : (
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            Step {formValidation.states.activeStep + 1}/{steps.length}
+            Step {stepperControls.activeStep + 1}/{steps.length}
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "column", pt: 2 }}>
-            {formValidation.states.activeStep === 0 && <TravellerForm />}
-            {formValidation.states.activeStep === 1 && <LocationForm />}
-            {formValidation.states.activeStep === 2 && <PreferencesForm />}
+            {stepperControls.activeStep === 0 && <TravellerForm />}
+            {stepperControls.activeStep === 1 && <LocationForm />}
+            {stepperControls.activeStep === 2 && <PreferencesForm />}
             <Button
               color="inherit"
-              disabled={formValidation.states.activeStep === 0}
-              onClick={formValidation.actions.handleBack}
+              disabled={stepperControls.activeStep === 0}
+              onClick={stepperControls.actions.handleBack}
               sx={{ mr: 1 }}
             >
               Back
@@ -110,12 +112,12 @@ export default function TravelStepper() {
               onClick={() => {
                 formValidation.actions.handleSubmit()
                 if (Object.keys(formValidation.states.errors).length !== 0) {
-                formValidation.actions.handleNext();
+                  stepperControls.actions.handleNext();
               }
               console.log(formValidation.states.errors)
               }}
             >
-              {formValidation.states.activeStep === steps.length - 1
+              {stepperControls.activeStep === steps.length - 1
                 ? "Finish"
                 : "Next"}
             </Button>
