@@ -3,9 +3,37 @@ import dayjs, { Dayjs } from "dayjs";
 import { SetStateAction, useState } from "react";
 
 export function useFormValidation() {
-  const handleChange = (e: { target }) => {
-    setInputFields({ ...inputFields, [e.target.name]: e.target.value });
-  };
+  
+  // STATES-----------------------------------------------------------------------
+  
+  const [errors, setErrors] = useState({});
+  const [meals, setMeals] = useState({
+    breakfast: false,
+    lunch: false,
+    dinner: false,
+  });
+  const [activities, setActivities] = useState({
+    trekking: false,
+    culturalTour: false,
+    sports: false,
+  });
+  const [activeStep, setActiveStep] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [value, setValue] = useState<Dayjs | null>(dayjs("2023-01-15"));
+  const [departureValue, setDepartureValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
+  const [returnValue, setReturnValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
+  const [location, setLocation] = useState("");
+  const [submitChecked, setSubmitChecked] = useState(false);
+  const [inputFields, setInputFields] = useState({
+    email: "",
+    fullName: "",
+    gender: "",
+    accommodation: "",
+  });
+  
+  // STATES-----------------------------------------------------------------------
+  
+  // STEPPER CONTROLS-----------------------------------------------------------------------
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -24,6 +52,12 @@ export function useFormValidation() {
 
   const handleReset = () => {
     setActiveStep(0);
+  };
+
+  // STEPPER CONTROLS-----------------------------------------------------------------------
+
+  const handleChange = (e: { target }) => {
+    setInputFields({ ...inputFields, [e.target.name]: e.target.value });
   };
   const handleSubmitCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSubmitChecked(event.target.checked);
@@ -82,30 +116,7 @@ export function useFormValidation() {
     return errors;
   };
 
-  const [errors, setErrors] = useState({});
-  const [meals, setMeals] = useState({
-    breakfast: false,
-    lunch: false,
-    dinner: false,
-  });
-  const [activities, setActivities] = useState({
-    trekking: false,
-    culturalTour: false,
-    sports: false,
-  });
-  const [activeStep, setActiveStep] = useState(0);
-  const [submitting, setSubmitting] = useState(false);
-  const [value, setValue] = useState<Dayjs | null>(dayjs("2023-01-15"));
-  const [departureValue, setDepartureValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
-  const [returnValue, setReturnValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
-  const [location, setLocation] = useState("");
-  const [submitChecked, setSubmitChecked] = useState(false);
-  const [inputFields, setInputFields] = useState({
-    email: "",
-    fullName: "",
-    gender: "",
-    accommodation: "",
-  });
+
 
   const { breakfast, lunch, dinner } = meals;
   const { trekking, culturalTour, sports } = activities;

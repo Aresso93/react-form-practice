@@ -13,6 +13,7 @@ export const FormContentContext = createContext({
         handleReturn: () => {},
         handleReset: () => {},
         handleStep1: () => {},
+        handleStep2: () => {},
         handleNext: () => {},
         handleBack: () => {},
         handleSubmitCheck: () => {},

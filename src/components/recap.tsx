@@ -1,33 +1,20 @@
 import { Button } from "@mui/material";
 import { useFormContentContext } from "../contexts/formContentContext";
-import { useStepperControls } from "./hooks/useStepperControls";
 
 export function Recap() {
   const formValidation = useFormContentContext();
+  let meals = formValidation.states.meals;
+  let activities = formValidation.states.activities;
 
-  function arrayDisplayer(meals: {}) {
-    meals = formValidation.states.meals;
-    let mealsArrayOfArrays = Object.entries(meals);
+  function arrayDisplayer(obj: {}) {
+    let objArray = Object.entries(obj);
     let tempArray = [];
-    for (let i = 0; i < mealsArrayOfArrays.length; i++) {
-      let mealsArray = mealsArrayOfArrays[i];
-      if (mealsArray[1] === true) {
-        tempArray.push(mealsArray[0]);
+    for (let i = 0; i < objArray.length; i++) {
+      let innerObjArray = objArray[i];
+      if (innerObjArray[1] === true) {
+        tempArray.push(innerObjArray[0]);
       }
     }
-    return tempArray;
-  }
-  function arrayDisplayer2(activities: {}) {
-    activities = formValidation.states.activities;
-    let activitiesArrayOfArrays = Object.entries(activities);
-    let tempArray = [];
-    for (let i = 0; i < activitiesArrayOfArrays.length; i++) {
-      let activitiesArray = activitiesArrayOfArrays[i];
-      if (activitiesArray[1] === true) {
-        tempArray.push(activitiesArray[0]);
-      }
-    }
-
     return tempArray;
   }
 
@@ -61,8 +48,7 @@ export function Recap() {
         </div>
         <div className="recap">
           Destination: {formValidation.states.location} <br></br>
-          Date of departure:{" "}
-          {formValidation.states.dates.departureValue.toString()}
+          Date of departure: {formValidation.states.dates.departureValue.toString()}
           <br></br>
           Date of return: {formValidation.states.dates.returnValue.toString()}
           <br></br>
@@ -78,15 +64,15 @@ export function Recap() {
           {formValidation.states.inputFields.accommodation} <br></br>
           You have selected the following meals:
           <div>
-            {arrayDisplayer(formValidation.states.meals).map((meal) => (
-              <div>{meal} </div>
+            {arrayDisplayer(meals).map((meal) => (
+              <div>{meal}</div>
             ))}
           </div>
           You have selected the following extra activities:
           <div>
-            {arrayDisplayer2(formValidation.states.activities).map(
+            {arrayDisplayer(activities).map(
               (activities) => (
-                <div>{activities} </div>
+                <div>{activities}</div>
               )
             )}
           </div>

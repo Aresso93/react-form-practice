@@ -13,7 +13,6 @@ import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import { useFormContentContext } from "../contexts/formContentContext";
 
 const steps = ["You", "Your destination", "Your preferences"];
-
 export default function TravelStepper() {
   const formValidation = useFormContentContext();
 
@@ -109,10 +108,11 @@ export default function TravelStepper() {
             <Box sx={{ flex: "1 1 auto" }} />
             <Button
               onClick={() => {
-                //formValidation.actions.handleSubmit()
-                //if (Object.keys(formValidation.states.errors).length !== 0) {
+                formValidation.actions.handleSubmit()
+                if (Object.keys(formValidation.states.errors).length !== 0) {
                 formValidation.actions.handleNext();
-                //}
+              }
+              console.log(formValidation.states.errors)
               }}
             >
               {formValidation.states.activeStep === steps.length - 1
