@@ -17,7 +17,6 @@ export function useFormValidation() {
     culturalTour: false,
     sports: false,
   });
- 
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState<Dayjs | null>(dayjs("2023-01-15"));
   const [departureValue, setDepartureValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
@@ -33,28 +32,7 @@ export function useFormValidation() {
   
   // STATES-----------------------------------------------------------------------
 
-  // STEPPER CONTROLS-----------------------------------------------------------------------
-  //const handleNext = () => {
-  //  setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  //};
-//
-  //const handleStep1 = () => {
-  //  setActiveStep(1)
-  //}
-//
-  //const handleStep2 = () => {
-  //  setActiveStep(2)
-  //}
-//
-  //const handleBack = () => {
-  //  setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  //};
-//
-  //const handleReset = () => {
-  //  setActiveStep(0);
-  //};
-
-  // STEPPER CONTROLS-----------------------------------------------------------------------
+  // METHODS----------------------------------------------------------------------
 
   const handleChange = (e: { target }) => {
     setInputFields({ ...inputFields, [e.target.name]: e.target.value });
@@ -116,7 +94,7 @@ export function useFormValidation() {
     return errors;
   };
 
-
+  // METHODS----------------------------------------------------------------------
 
   const { breakfast, lunch, dinner } = meals;
   const { trekking, culturalTour, sports } = activities;

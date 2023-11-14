@@ -1,5 +1,9 @@
 import { Button } from "@mui/material";
 import { useFormContentContext } from "../contexts/formContentContext";
+import EditingModal from "./editingModal";
+import TravellerForm from "./traveller-form";
+import LocationForm from "./location-form";
+import { PreferencesForm } from "./preferences-form";
 
 export function Recap() {
   const formValidation = useFormContentContext();
@@ -39,12 +43,9 @@ export function Recap() {
           <br></br>
           Gender: {formValidation.states.inputFields.gender} <br></br>
           Email address: {formValidation.states.inputFields.email} <br></br>
-          <Button
-            // onClick={formValidation.actions.handleReset}
-            variant="outlined"
-          >
-            Edit this section
-          </Button>
+          <EditingModal>
+          <TravellerForm/>
+          </EditingModal>
         </div>
         <div className="recap">
           Destination: {formValidation.states.location} <br></br>
@@ -52,12 +53,9 @@ export function Recap() {
           <br></br>
           Date of return: {formValidation.states.dates.returnValue.toString()}
           <br></br>
-          <Button
-            variant="outlined"
-            // onClick={formValidation.actions.handleStep1}
-          >
-            Edit this section
-          </Button>
+          <EditingModal>
+          <LocationForm/>
+          </EditingModal>
         </div>
         <div className="recap">
           Method of accommodation:{" "}
@@ -76,12 +74,9 @@ export function Recap() {
               )
             )}
           </div>
-          <Button
-            variant="outlined"
-            // onClick={formValidation.actions.handleStep2}
-          >
-            Edit this section
-          </Button>
+          <EditingModal>
+          <PreferencesForm/>
+          </EditingModal>
         </div>
       </div>
     </>
