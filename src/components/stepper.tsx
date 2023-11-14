@@ -19,6 +19,11 @@ export default function TravelStepper() {
   
   const formValidation = useFormContentContext();
   const stepperControls = useStepperControls()
+  useEffect(() => {
+    if (formValidation.states.errors.email === '' ) {
+      stepperControls.actions.handleNext();
+    }
+  }, [formValidation.states.errors]);
   
   console.log('AAAAAAAAAAA', formValidation.states.errors.email)
   return (
@@ -114,9 +119,7 @@ export default function TravelStepper() {
             <Button
               onClick={() => {
                 formValidation.actions.handleSubmit()
-                if (formValidation.states.errors.email === '' ) {
-                  stepperControls.actions.handleNext();
-                }
+                
               console.log(Object.values(formValidation.states.errors))
               console.log(Object.values(formValidation.states.errors).length)
               }}
