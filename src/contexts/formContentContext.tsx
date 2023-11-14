@@ -43,8 +43,6 @@ export const FormContentContext = createContext({
             fullName: '',
             email: '',
             gender: '',
-            date: '',
-            accommodation: ''
         },
         inputFields:{
             fullName: '',

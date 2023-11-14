@@ -23,14 +23,14 @@ export default function TravellerForm() {
         style={{
           border: formValidation.states.errors.fullName
             ? "1px solid red"
-            : null,
+            : "0px",
         }}
         label="enter your full name"
         variant="outlined"
         onChange={formValidation.actions.handleChange}
       />
       {formValidation.states.errors.fullName ? (
-        <p className="error">Name should include first AND last name</p>
+        <p className="error">Full name should include first AND last name</p>
       ) : null}
 
       <DatePicker
@@ -51,7 +51,7 @@ export default function TravellerForm() {
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue=""
           style={{
-            border: formValidation.states.errors.gender ? "1px solid red" : null,
+            border: formValidation.states.errors.gender ? "1px solid red" : "0px",
           }}
           name="gender"
           onChange={formValidation.actions.handleChange}
@@ -70,7 +70,7 @@ export default function TravellerForm() {
         value={formValidation.states.inputFields.email}
         id="email"
         style={{
-          border: formValidation.states.errors.email ? "1px solid red" : null,
+          border: formValidation.states.errors.email ? "1px solid red" : "0px",
         }}
         label="enter your email address"
         variant="outlined"
@@ -80,10 +80,6 @@ export default function TravellerForm() {
         <p className="error">Please insert a valid email</p>
       ) : null}
 
-      {Object.keys(formValidation.states.errors).length === 0 &&
-      formValidation.states.submitting ? (
-        <span>Successfully submitted ✓</span>
-      ) : null}
     </div>
   );
 }

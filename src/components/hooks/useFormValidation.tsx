@@ -27,7 +27,7 @@ export function useFormValidation() {
     email: "",
     fullName: "",
     gender: "",
-    accommodation: "",
+    //accommodation: "",
   });
   
   // STATES-----------------------------------------------------------------------
@@ -45,17 +45,21 @@ export function useFormValidation() {
     setSubmitting(true);
     console.log("Submitted");
   };
+  // // DATE METHODS----------------------------------------------------------------------
   const handleDate = (newValue: SetStateAction<dayjs.Dayjs | null>) => {
     setValue(newValue);
-  };
-  const handleLocationChange = (event: SelectChangeEvent) => {
-    setLocation(event.target.value as string);
   };
   const handleDeparture = (newValue: SetStateAction<dayjs.Dayjs | null>) => {
     setDepartureValue(newValue);
   };
   const handleReturn = (newValue: SetStateAction<dayjs.Dayjs | null>) => {
     setReturnValue(newValue);
+  };
+
+  // // DATE METHODS----------------------------------------------------------------------
+
+  const handleLocationChange = (event: SelectChangeEvent) => {
+    setLocation(event.target.value as string);
   };
   const handleMealChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMeals({ ...meals, [event.target.name]: event.target.checked });
@@ -69,13 +73,13 @@ export function useFormValidation() {
     email: string;
     fullName: string;
     gender: string;
-    accommodation: string;
+    //accommodation: string;
   }) => {
     let errors = {
       email: "",
       fullName: "",
       gender: "",
-      accommodation: "",
+      //accommodation: "",
     };
     if (!inputValues.email.includes(".") && inputValues.email.length <= 10) {
       errors.email = "Email must include a @";
@@ -87,9 +91,9 @@ export function useFormValidation() {
     if (!inputValues.gender) {
       errors.gender = "Select a gender";
     }
-    if (!inputValues.accommodation) {
-      errors.accommodation = "Select a method of accommodation";
-    }
+    //if (!inputValues.accommodation) {
+    //  errors.accommodation = "Select a method of accommodation";
+    //}
     
     return errors;
   };

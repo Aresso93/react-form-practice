@@ -111,7 +111,7 @@ export default function TravelStepper() {
             <Button
               onClick={() => {
                 formValidation.actions.handleSubmit()
-                if (Object.keys(formValidation.states.errors).length !== 0) {
+                if ((formValidation.states.errors) = {email: "", fullName: "", gender: ""}) {
                   stepperControls.actions.handleNext();
               }
               console.log(formValidation.states.errors)
@@ -127,3 +127,8 @@ export default function TravelStepper() {
     </Box>
   );
 }
+
+// {Object.keys(formValidation.states.errors).length === 0 &&
+//   formValidation.states.submitting ? (
+//     <span>Successfully submitted ✓</span>
+//   ) : null}

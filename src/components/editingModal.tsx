@@ -13,6 +13,7 @@ const style = {
   width: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
+  borderRadius: 5,
   boxShadow: 24,
   p: 4,
 };
@@ -20,7 +21,6 @@ const style = {
 export interface ModalProps{
     children: ReactNode
 }
-
 export default function EditingModal(props:ModalProps) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -43,7 +43,9 @@ export default function EditingModal(props:ModalProps) {
             
           </Typography>
           {props.children}
+          <div className='btn-container'>
           <Button onClick={handleClose}>Done</Button>
+          </div>
         </Box>
       </Modal>
     </div>

@@ -79,3 +79,8 @@ html, body{
 .outer-container{
   width: 100%;
 }
+
+.btn-container{
+  display: flex;
+  place-content: center;
+}
