@@ -1,79 +1,44 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { ReactNode } from 'react';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import TravellerForm from "./traveller-form";
+import { Recap } from "./recap";
+import LocationForm from "./location-form";
+import { PreferencesForm } from "./preferences-form";
+import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
+import { useFormContentContext } from "../contexts/formContentContext";
+import { useStepperControls } from "./hooks/useStepperControls";
+import { useEffect } from "react";
 
-const steps = ['You', 'Your destination', 'Your preferences', 'Your recap'];
+const steps = ["You", "Your destination", "Your preferences"];
+export default function TravelStepper() {
+  
+  const formValidation = useFormContentContext();
+  const stepperControls = useStepperControls()
 
-interface TravelStepperProps{
-    children: ReactNode
-}
-
-export default function TravelStepper(props: TravelStepperProps) {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set<number>());
-
-  const isStepOptional = (step: number) => {
-    return step === 500;
-  };
-
-  const isStepSkipped = (step: number) => {
-    return skipped.has(step);
-  };
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
+  useEffect(() => {
+    if (formValidation.states.errors.email === '' && formValidation.states.errors.fullName === '' && formValidation.states.errors.gender === '') {
+      stepperControls.actions.handleNext();
     }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  }, [formValidation.states.errors]);
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
+    <Box sx={{ width: "100%" }}>
+      <Stepper activeStep={stepperControls.activeStep}>
+        {steps.map((label) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
             optional?: React.ReactNode;
           } = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
-            );
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
+
+          {
+            if (stepperControls.activeStep === 0) {
+              <TravellerForm />;
+            }
           }
           return (
             <Step key={label} {...stepProps}>
@@ -82,36 +47,86 @@ export default function TravelStepper(props: TravelStepperProps) {
           );
         })}
       </Stepper>
-      {activeStep === steps.length ? (
+      {stepperControls.activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - Enjoy your travel!
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+          <div className="btn-ctn">
+            <Typography sx={{ mt: 2, mb: 1 }}>
+              All steps completed - Accept our terms and conditions to submit
+              your information
+            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "column", pt: 2 }}>
+              <FormGroup>
+                <FormControlLabel
+                  required
+                  control={<Checkbox />}
+                  checked={formValidation.states.submitChecked}
+                  label="I accept"
+                  onChange={formValidation.actions.handleSubmitCheck}
+                />
+              </FormGroup>
+
+              {formValidation.states.submitChecked === false ? (
+                <Button disabled variant="contained">
+                  Submit
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  onClick={stepperControls.actions.handleReset}
+                >
+                  Submit
+                </Button>
+              )}
+            </Box>
+          </div>
+          <Recap />
+
+          <div className="btn-ctn">
+            <Button
+              onClick={stepperControls.actions.handleReset}
+              variant="contained"
+            >
+              Fill out a new form
+            </Button>
             <Button
               color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
+              disabled={stepperControls.activeStep === 0}
+              onClick={stepperControls.actions.handleBack}
               sx={{ mr: 1 }}
             >
               Back
             </Button>
-            <Box sx={{ flex: '1 1 auto' }} />
-            {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
-              </Button>
-            )}
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+          </div>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>
+            Step {stepperControls.activeStep + 1}/{steps.length}
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", pt: 2 }}>
+            {stepperControls.activeStep === 0 && <TravellerForm />}
+            {stepperControls.activeStep === 1 && <LocationForm />}
+            {stepperControls.activeStep === 2 && <PreferencesForm />}
+            <Button
+              color="inherit"
+              disabled={stepperControls.activeStep === 0}
+              onClick={stepperControls.actions.handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: "1 1 auto" }} />
+            <Button
+              onClick={() => {
+                formValidation.actions.handleSubmit()
+                
+              console.log(Object.values(formValidation.states.errors))
+              console.log(Object.values(formValidation.states.errors).length)
+              }}
+            >
+              {stepperControls.activeStep === steps.length - 1
+                ? "Finish"
+                : "Next"}
             </Button>
           </Box>
         </React.Fragment>

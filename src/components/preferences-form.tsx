@@ -7,19 +7,23 @@ import {
   Checkbox,
   FormGroup,
 } from "@mui/material";
+import { useFormContentContext } from "../contexts/formContentContext";
 
 export function PreferencesForm() {
+  const formValidation = useFormContentContext();
+
   return (
     <>
       <div className="form-container">
         <FormControl>
           <FormLabel id="demo-radio-buttons-group-label">
-            Pick your preferred accommodation
+            Pick your preferred accommodation*
           </FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="hotel"
-            name="radio-buttons-group"
+            defaultValue=" "
+            name="accommodation"
+            onChange={formValidation.actions.handleChange}
           >
             <FormControlLabel value="hotel" control={<Radio />} label="Hotel" />
             <FormControlLabel
@@ -34,33 +38,71 @@ export function PreferencesForm() {
             />
           </RadioGroup>
           <FormGroup>
-            Pick the meals you want during your stay
+            Pick the meals you want during your stay (you can select multiple
+            options)
             <FormControlLabel
-              control={<Checkbox />}
-              label="Breakfast (+10 euros)"
+              control={
+                <Checkbox
+                  checked={formValidation.states.meals.breakfast}
+                  onChange={formValidation.actions.handleMealChange}
+                  name="breakfast"
+                />
+              }
+              label="Breakfast"
             />
             <FormControlLabel
-              control={<Checkbox />}
-              label="Lunch (+15 euros)"
+              control={
+                <Checkbox
+                  checked={formValidation.states.meals.lunch}
+                  onChange={formValidation.actions.handleMealChange}
+                  name="lunch"
+                />
+              }
+              label="Lunch"
             />
             <FormControlLabel
-              control={<Checkbox />}
-              label="Dinner (+15 euros)"
+              control={
+                <Checkbox
+                  checked={formValidation.states.meals.dinner}
+                  onChange={formValidation.actions.handleMealChange}
+                  name="dinner"
+                />
+              }
+              label="Dinner"
             />
           </FormGroup>
           <FormGroup>
-            Pick the extra activities you want
+            Pick the extra activities you want to take part in (you can select
+            multiple options)
             <FormControlLabel
-              control={<Checkbox />}
-              label="Trekking (+30 euros)"
+              control={
+                <Checkbox
+                  checked={formValidation.states.activities.trekking}
+                  onChange={formValidation.actions.handleActivityChange}
+                  name="trekking"
+                />
+              }
+              label="Trekking"
             />
             <FormControlLabel
-              control={<Checkbox />}
-              label="Cultural tour (+40 euros)"
+              control={
+                <Checkbox
+                  checked={formValidation.states.activities.culturalTour}
+                  onChange={formValidation.actions.handleActivityChange}
+                  name="culturalTour"
+                />
+              }
+              label="Cultural tour"
             />
             <FormControlLabel
-              control={<Checkbox />}
-              label="Sports (+50 euros)"
+              control={
+                <Checkbox
+                  checked={formValidation.states.activities.sports}
+                  onChange={formValidation.actions.handleActivityChange}
+                  name="sports"
+                />
+              }
+              label="Sports"
             />
           </FormGroup>
         </FormControl>
