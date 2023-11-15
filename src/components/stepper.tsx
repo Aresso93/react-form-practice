@@ -25,10 +25,6 @@ export default function TravelStepper() {
       stepperControls.actions.handleNext();
     }
   }, [formValidation.states.errors]);
-  
-  useEffect(() => {
-
-  })
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -138,8 +134,3 @@ export default function TravelStepper() {
     </Box>
   );
 }
-
-// {Object.keys(formValidation.states.errors).length === 0 &&
-//   formValidation.states.submitting ? (
-//     <span>Successfully submitted ✓</span>
-//   ) : null}

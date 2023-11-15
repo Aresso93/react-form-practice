@@ -39,7 +39,7 @@ export function Recap() {
       <div className="recap-container">
         <div className="recap">
           Full name: {formValidation.states.inputFields.fullName} <br></br>
-          Date of birth: {formValidation.states.dates.value.toString()}{" "}
+          Date of birth: {formValidation.states.dates.value.toString()}
           <br></br>
           Gender: {formValidation.states.inputFields.gender} <br></br>
           Email address: {formValidation.states.inputFields.email} <br></br>
